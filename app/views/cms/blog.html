@@ -1,0 +1,28 @@
+#{extends 'page.html' /}
+#{set title:page.title /}
+
+<div class="row">
+    <div class="span12">
+        <h1>${page.title}</h1>
+        ${page.body.raw()}
+    </div>
+</div>
+
+<div class="row">
+    <div class="span12">
+        <ul class="unstyled">
+            #{if page.previous()}
+                <li class="pull-left">
+                    <a class="btn btn-primary" href="@{cms.Frontend.show(page.previous().name)}" title="&{'cms.blog.post.previous',page.previous().title}">< ${page.previous().title}</a>
+                </li>
+            #{/if}
+            #{if page.next()}
+                <li class="pull-right">
+                    <a class="btn btn-primary" href="@{cms.Frontend.show(page.next().name)}" title="&{'cms.blog.post.next', page.next().title}">${page.next().title} ></a>
+                </li>
+            #{/if}
+        </ul>
+    </div>
+</div>
+
+#{cms.editPage pageName:page.name /}

@@ -1,0 +1,32 @@
+# Default cms messages
+# You can specialize this file for each language.
+# For exemple, for french create a messages.fr file
+
+#cms.name=cms
+cms.page.name                    = Nom
+cms.page.name.help               = Ce champs permet de renseigner le nom de la page, c'est à dire ce qui va s'afficher dans l'url. Il est préférable de pas utiliser de caractères spéciaux et accentués et de remplacer les espaces par le -.
+cms.page.name.placeholder        = mon-item
+cms.page.title                   = Titre
+cms.page.title.help              = Ce champs sera affiché comme titre principale de l'objet de contenu (balise H1).
+cms.page.title.placeholder       = Mon titre
+cms.page.description             = Description
+cms.page.description.help        = Ce champs permet de renseigner la méta-données 'description" de la page html. Il est bon de renseigner ce champ pour le référencement.
+cms.page.description.placeholder =
+cms.page.body                    = Texte
+cms.page.body.help               = Texte principal de l'objet de contenu. ATTENTION : vérifier bien le rendu au niveau du front-office.
+cms.page.body.placeholder        =
+cms.page.created                 = Créé le
+cms.page.updated                 = Mis à jour le
+cms.page.save                    = Enregistrer
+cms.page.delete                  = Supprimer
+cms.page.new                     = Nouveau %s
+cms.page.view                    = Voir
+cms.page.edit                    = Modifier
+
+cms.title                        = Administration des %ss
+cms.edit.title                   = Edition de "%s"
+cms.new.title                    = Création de %s
+cms.action                       = Actions
+cms.caption                      = %s %ss  trouvés
+
+cms.rss.title                    = %s - Flux RSS des %ss

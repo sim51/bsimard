@@ -1,0 +1,12 @@
+# This file defines all module routes (Higher priority routes first)
+#
+# import these routes in the main app as :
+# *     /                       module:search
+#
+# ~~~~
+
+# Admin
+GET      /admin/search                                modules.search.Administration.index
+GET      /admin/search/optimize/{name}                modules.search.Administration.optimize
+GET      /admin/search/reindex/{name}                 modules.search.Administration.reindex
+GET      /admin/search/reopen/{name}                  modules.search.Administration.reopen

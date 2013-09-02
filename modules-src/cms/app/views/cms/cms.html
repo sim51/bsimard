@@ -1,0 +1,33 @@
+#{extends 'admin.html' /}
+#{set title:'Admin - Module CMS' /}
+
+<div class="row-fluid">
+    <div class="span3">
+        <ul class="nav nav-list bs-docs-sidenav affix">
+            %{ List<String> templates = models.cms.CMSPage.getAllTemplate();}%
+            #{list items:templates, as:'tpl' }
+                <li #{if template == tpl} class="active"#{/if}>
+                    <a href="@{cms.Admin.index(tpl)}">
+                        <i class="icon-chevron-right"></i>
+                        ${tpl}
+                    </a>
+                </li>
+            #{/list}
+            <li #{if template == "Fragment"} class="active"#{/if}>
+                <a href="@{cms.Admin.index("Fragment")}">
+                    <i class="icon-chevron-right"></i>
+                    Fragment
+                </a>
+            </li>
+            <li #{if template == "agenda"} class="active"#{/if}>
+                <a href="@{Agendas.admin()}">
+                    <i class="icon-chevron-right"></i>
+                    Agenda
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="span9">
+        #{doLayout/}
+    </div>
+</div>

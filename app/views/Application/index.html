@@ -1,0 +1,74 @@
+#{extends 'main.html' /}
+#{set title:'Accueil' /}
+#{set mainClass:'home' /}
+
+<!-- header-->
+<header id="overview" class="blockDefault firstBlock">
+    <div class="container">
+
+        <!-- Mes valeurs -->
+        <div id="valeurs" class="row-fluid">
+            #{cms.display 'home_header' }
+                <ul class="inline span12">
+                    <li class="span3" id="free">
+                        <a href="#" class="tooltip" data-placement="bottom" data-toggle="tooltip" title="Un jour comme les autres, Gerry Lane et sa famille se retrouvent coincés dans un embouteillage monstre sur leur trajet quotidien. Ancien enquêteur des Nations Unies, Lane comprend immédiatement que la situation est inhabituelle">
+                            <i class="icon-linux"></i>
+                            <div>Libriste</div>
+                        </a>
+                    </li>
+                    <li class="span3" id="webdev">
+                        <a href="#" class="tooltip" data-placement="bottom" data-toggle="tooltip" title="Un jour comme les autres, Gerry Lane et sa famille se retrouvent coincés dans un embouteillage monstre sur leur trajet quotidien. Ancien enquêteur des Nations Unies, Lane comprend immédiatement que la situation est inhabituelle">
+                            <i class="iconmoon-earth"></i>
+                            <div>Développeur Web</div>
+                        </A>
+                    </li>
+                    <li class="span3" id="java">
+                        <a href="#" class="tooltip" data-placement="bottom" data-toggle="tooltip" title="Un jour comme les autres, Gerry Lane et sa famille se retrouvent coincés dans un embouteillage monstre sur leur trajet quotidien. Ancien enquêteur des Nations Unies, Lane comprend immédiatement que la situation est inhabituelle">
+                            <i class="icon-coffee"></i>
+                            <div>Aimant le café</div>
+                        </a>
+                    </li>
+                    <li class="span3" id="data">
+                        <a href="#" class="tooltip" data-placement="bottom" data-toggle="tooltip" title="Un jour comme les autres, Gerry Lane et sa famille se retrouvent coincés dans un embouteillage monstre sur leur trajet quotidien. Ancien enquêteur des Nations Unies, Lane comprend immédiatement que la situation est inhabituelle">
+                            <i class="iconmoon-stack"></i>
+                            <div>Et les données</div>
+                        </a>
+                    </li>
+                </ul>
+            #{/cms.display}
+        </div>
+    </div>
+</header>
+
+<!-- follow -->
+<div id="follow" class="blockEven">
+    <div class="container">
+        <div class="row-fluid ">
+            #{cms.display 'home_follow' }
+                <div class="span6">
+                    <h2>Retrouvez-moi sur le web</h2>
+                </div>
+                <div class="span6">
+                    <ul class="inline pull-right">
+                        <li>
+                            <div>
+                                <a href="#" title=""><i class="icon-twitter"></i></a>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <a href="#" title=""><i class="icon-github-alt"></i></a>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <a href="#" title=""><i class="icon-linkedin"></i></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            #{/cms.display}
+        </div>
+    </div>
+</div>
+

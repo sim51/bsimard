@@ -1,0 +1,5 @@
+#{if controllers.Security.check("admin") }
+    <div id="cmsbar">
+        <a class="btn btn-warning" href="@{cms.Admin.editPage(_pageName)}">&{'cms.page.edit'}</a>
+    </div>
+#{/if}

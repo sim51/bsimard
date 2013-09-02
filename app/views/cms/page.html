@@ -1,0 +1,11 @@
+#{extends 'page.html' /}
+#{set title:page.title /}
+
+<div class="row-fluid">
+    <div class="span12">
+        <h1>${page.title}</h1>
+        ${page.body.raw()}
+    </div>
+</div>
+
+#{cms.editPage pageName:page.name /}

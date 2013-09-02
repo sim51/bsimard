@@ -1,0 +1,105 @@
+body.home {
+
+  #valeurs {
+    margin: 50px 0;
+    height: 120px;
+
+    .tooltip {
+      z-index: auto;
+    }
+
+    li {
+      text-align: center;
+      a {
+        opacity: 1;
+        text-align: center;
+
+        &:hover {
+          text-decoration: none;
+          color: @black !important;
+          transition: color 1s;
+        }
+
+        i {
+          font-size: 100px;
+        }
+        div {
+          font-size: 14px;
+          font-weight: bold;
+        }
+      }
+
+      &#free {
+        a {
+          color: @primary;
+        }
+      }
+      &#webdev {
+        a {
+          margin-left: 15px;
+          color: @quaternary;
+        }
+      }
+      &#java {
+        a {
+          margin-left: 55px;
+          color: @tertiary;
+        }
+      }
+      &#data {
+        a {
+          margin-left: 74px;
+          color: @secondary;
+        }
+      }
+    }
+  }
+
+  #follow {
+    height: 100px;
+    .container {
+      padding: 0;
+      height: 100%;
+      .row-fluid {
+        height: 100%;
+        .span6 {
+          height: 100%;
+
+          h2 {
+            display: inline-block;
+            margin: 0;
+            height: 100%;
+            line-height: 100px;
+            color: @white;
+          }
+          ul {
+            margin: 0;
+            padding: 12px 0;
+            li {
+              .circle;
+              font-size: 35px;
+              padding: 20px;
+              margin: 0 20px;
+              background-color: @secondary;
+              div {
+                width: 35px;
+                a {
+                  color: @white;
+                  &:hover {
+                    text-decoration: none;
+                  }
+                }
+              }
+              &:hover {
+                a{
+                  transition: color 1s;
+                  color: @black;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
