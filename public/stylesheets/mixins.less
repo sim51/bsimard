@@ -66,6 +66,26 @@ ul.inline > li.last, ol.inline > li.last {
 }
 
 // forms
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"] {
+  &:focus {
+    border-color: @secondary;
+    box-shadow:  0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px @secondary;
+  }
+}
 form.form-horizontal {
 
   fieldset {
