@@ -13,35 +13,27 @@
     #{get 'moreScripts' /}
 </head>
 <body class="admin">
-    <!-- Navbar -->
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="brand" href="@{Application.index()}">
-                    <img class="baseline" src="@{'/public/images/pictos/home.png'}" />
-                    <h1>Data<span>Lab</span></h1>
-                </a>
-                <div class="nav-collapse collapse">
-                    <ul class="nav">
-                        <li>
-                            <a href="@{cms.Admin.index()}" title="CMS Module">CMS</a>
-                        </li>
-                        <li>
-                            <a href="@{Organismes.admin()}" title="Organisme">Organisme</a>
-                        </li>
-                        <li>
-                            <a href="@{NewsLetter.admin()}" title="Newsletter">Newsletter</a>
-                        </li>
-                        <li>
-                            <a href="@{modules.search.Administration.index()}" title="Search module">Lucene</a>
-                        </li>
-                    </ul>
-                </div>
+<!-- Navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="@{Application.index()}" title="Benoît Simard">
+                <img class="baseline" src="@{'/public/images/bsimard.png'}" alt=""/>
+            </a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li>
+                        <a href="@{cms.Admin.index()}" title="CMS Module">CMS</a>
+                    </li>
+                    <li>
+                        <a href="@{modules.search.Administration.index()}" title="Search module">Lucene</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

@@ -14,13 +14,13 @@ public class Application extends AbstractController {
      * Home page.
      */
     public static void index() {
-        List<CMSPage> blogs = CMSPage.getLastests("blog", 3);
-        List<CMSPage> projects = CMSPage.getLastests("project", 3);
-        render();
+        List<CMSPage> blogs = CMSPage.getAllByTemplate("blog");
+        List<CMSPage> projects = CMSPage.getAllByTemplate("project");
+        render(blogs, projects);
     }
 
     /**
-     * Home page.
+     * Blog page.
      */
     public static void blog() {
         CMSPage page = CMSPage.getLastest("blog");

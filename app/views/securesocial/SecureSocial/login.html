@@ -59,7 +59,7 @@
             <div class="clearfix" >
                 <p>&{'securesocial.useEmailAndPassword'}</p>
                 #{form @securesocial.SecureSocial.authenticate(securesocial.provider.ProviderType.userpass), class:"form-horizontal blockDefault"}
-                    <fieldset class="blockLight">
+                    <fieldset class="blockEven">
 
                         <!-- Login field -->
                         <div class="control-group #{ifError 'userName'} error #{/ifError}">

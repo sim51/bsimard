@@ -75,30 +75,16 @@
 <div id="realisation" class="block">
     <div class="container">
         <h2>Mes réalisations</h2>
-
         <div class="row-fluid">
-            <div class="box span4">
-                <h3>Mon ticket de blog</h3>
-                <div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tria genera bonorum;Sit enim idem caecus, debilis. Cum id fugiunt, re eadem defendunt, quae Peripatetici, verba. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Licet hic rursus ea commemores, quae optimis verbis ab Epicuro de laude amicitiae dicta sunt. Primum divisit ineleganter;</p>
+            #{list item:projects, as:'project'}
+                <div class="box span4">
+                    <h3>${project.title}</h3>
+                    <div>
+                        ${project.body}
+                    </div>
                 </div>
-            </div>
-
-            <div class="box span4">
-                <h3>Mon ticket de blog</h3>
-                <div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tria genera bonorum;Sit enim idem caecus, debilis. Cum id fugiunt, re eadem defendunt, quae Peripatetici, verba. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Licet hic rursus ea commemores, quae optimis verbis ab Epicuro de laude amicitiae dicta sunt. Primum divisit ineleganter;</p>
-                </div>
-            </div>
-
-            <div class="box span4">
-                <h3>Mon ticket de blog</h3>
-                <div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tria genera bonorum;Sit enim idem caecus, debilis. Cum id fugiunt, re eadem defendunt, quae Peripatetici, verba. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Licet hic rursus ea commemores, quae optimis verbis ab Epicuro de laude amicitiae dicta sunt. Primum divisit ineleganter;</p>
-                </div>
-            </div>
+            #{/list}
         </div>
-
     </div>
 </div>
 
@@ -106,26 +92,14 @@
     <div class="container">
         <h2>Mes derniers tickets</h2>
         <div class="row-fluid">
-            <div>
-                <h3>Mon ticket de blog</h3>
+            #{list item:blogs, as:'blog'}
                 <div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tria genera bonorum;Sit enim idem caecus, debilis. Cum id fugiunt, re eadem defendunt, quae Peripatetici, verba. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Licet hic rursus ea commemores, quae optimis verbis ab Epicuro de laude amicitiae dicta sunt. Primum divisit ineleganter;</p>
+                    <h3>${blog.title}</h3>
+                    <div>
+                        ${blog.body}
+                    </div>
                 </div>
-            </div>
-
-            <div>
-                <h3>Mon ticket de blog</h3>
-                <div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tria genera bonorum;Sit enim idem caecus, debilis. Cum id fugiunt, re eadem defendunt, quae Peripatetici, verba. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Licet hic rursus ea commemores, quae optimis verbis ab Epicuro de laude amicitiae dicta sunt. Primum divisit ineleganter;</p>
-                </div>
-            </div>
-
-            <div>
-                <h3>Mon ticket de blog</h3>
-                <div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tria genera bonorum;Sit enim idem caecus, debilis. Cum id fugiunt, re eadem defendunt, quae Peripatetici, verba. Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines. Licet hic rursus ea commemores, quae optimis verbis ab Epicuro de laude amicitiae dicta sunt. Primum divisit ineleganter;</p>
-                </div>
-            </div>
+            #{/list}
         </div>
     </div>
 </div>
