@@ -6,7 +6,7 @@
 #
 # page contact
 #
-page.contact.title                 = Nous contacter
+page.contact.title                 = Me contacter
 page.contact.author                = Votre nom
 page.contact.author.placeholder    = Pierre Dupont
 page.contact.author.help           = Veuillez saisir votre nom et prénom

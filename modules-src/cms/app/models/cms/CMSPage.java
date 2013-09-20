@@ -89,6 +89,17 @@ public class CMSPage extends GenericModel {
     }
 
     /**
+     * Get the lastest number elements by template.
+     *
+     * @param template
+     * @param number
+     * @return
+     */
+    public static List<CMSPage> getLastests(String template, int number){
+        return CMSPage.find("template = ?1 order by created desc", template).fetch(number);
+    }
+
+    /**
      * Get previous item by date by template.
      *
      * @return
