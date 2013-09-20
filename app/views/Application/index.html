@@ -76,11 +76,11 @@
     <div class="container">
         <h2>Mes réalisations</h2>
         <div class="row-fluid">
-            #{list item:projects, as:'project'}
+            #{list items:projects, as:'project'}
                 <div class="box span4">
                     <h3>${project.title}</h3>
                     <div>
-                        ${project.body}
+                        ${project.body.raw()}
                     </div>
                 </div>
             #{/list}
@@ -92,13 +92,15 @@
     <div class="container">
         <h2>Mes derniers tickets</h2>
         <div class="row-fluid">
-            #{list item:blogs, as:'blog'}
-                <div>
-                    <h3>${blog.title}</h3>
+            #{list items:blogs, as:'blog'}
+                <a href="@{cms.Frontend.show(blog.name)}" title="${blog.title}">
                     <div>
-                        ${blog.body}
+                        <h3>${blog.title}</h3>
+                        <div>
+                            ${blog.description.raw()}
+                        </div>
                     </div>
-                </div>
+                </a>
             #{/list}
         </div>
     </div>
