@@ -1,10 +1,14 @@
 body.home {
 
+  h3 {
+    font-size: 20px;
+  }
+
   #valeurs {
     margin: 50px 0;
 
     .tooltip {
-      z-index: auto;
+      z-index: 99999;
     }
 
     li {
@@ -12,8 +16,8 @@ body.home {
       height: 120px;
       a {
         opacity: 1;
+        z-index: 10 !important;
         text-align: center;
-        //margin: 0 37.5%;
 
         &:hover {
           text-decoration: none;
@@ -54,7 +58,7 @@ body.home {
   }
 
   #follow {
-    height: 100px;
+    height: 130px;
     .container {
       padding: 0;
       height: 100%;
@@ -67,12 +71,12 @@ body.home {
             display: inline-block;
             margin: 0;
             height: 100%;
-            line-height: 100px;
+            line-height: 130px;
             color: @white;
           }
           ul {
             margin: 0;
-            padding: 12px 0;
+            padding: 27px 0;
             li {
               .circle;
               font-size: 35px;
@@ -89,10 +93,13 @@ body.home {
                 }
               }
               &:hover {
-                a{
+                a {
                   transition: color 1s;
                   color: @black;
                 }
+              }
+              &:first-child {
+                margin-left: 0;
               }
               &:last-child {
                 margin-right: 0;
@@ -104,36 +111,26 @@ body.home {
     }
   }
 
-  #blog {
-    h2 {
-      margin: 50px 0;
-    }
-    a {
-      text-decoration: none;
-      div {
-        color: @grey;
-      }
-
-      &:hover {
-        h3 {
-          color: @secondary;
-          transition: color 1s;
-        }
-        div {
-          color: @primary;
-          transition: color 1s;
-        }
-      }
-    }
-  }
-
   #realisation {
-    h2 {
-      margin: 50px 0;
+    margin: 50px 0;
+
+    .title {
+      margin-top: 70px;
+      text-align: center;
+
+      h2 {
+      }
+
+      i {
+        color: @quaternary;
+        font-size: 150px;
+      }
     }
+
     .box {
       background-color: @quaternary;
       padding: 20px;
+      margin-bottom: 20px;
       text-align: center;
 
       h3 {
@@ -143,8 +140,38 @@ body.home {
     }
   }
 
-  h3 {
-    font-size: 20px;
+  #blog {
+    background-color: @tertiary;
+    padding-bottom: 70px;
+
+    h2 {
+      margin: 50px 0;
+      color: @white;
+    }
+
+    a {
+      text-decoration: none;
+      h3{
+        color: @black;
+      }
+      div {
+        color: @white;
+      }
+
+      &:hover {
+        h3 {
+          color: @white;
+        }
+        div {
+          color: @black;
+        }
+      }
+    }
+  }
+
+  footer {
+    margin-top: 0;
+    border-top: none;
   }
 
 }

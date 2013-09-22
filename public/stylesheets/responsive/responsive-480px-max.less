@@ -3,11 +3,47 @@
 // --------------------------------------------------
 @media (max-width: 480px) {
   .navbar {
+    .btn-navbar {
+      margin-right: 20px;
+    }
     .form-search {
       position: absolute;
       top: 0;
       right: 80px;
       width: 40%;
+    }
+  }
+
+  body.home {
+
+    #valeurs {
+      margin: 0 !important;
+      li {
+        width: 100%;
+        float: left;
+        margin-bottom: 50px;
+        a {
+          width: 100%;
+        }
+      }
+    }
+
+    #follow {
+      .container {
+        .row-fluid {
+          .span6 {
+            &:first-child {
+              display: none;
+            }
+
+            ul {
+              li {
+                margin: 10px;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
