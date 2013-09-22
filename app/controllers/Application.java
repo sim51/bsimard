@@ -15,8 +15,7 @@ public class Application extends AbstractController {
      */
     public static void index() {
         List<CMSPage> blogs = CMSPage.getLastests("blog", 3);
-        List<CMSPage> projects = CMSPage.getLastests("project", 3);
-        render(blogs, projects);
+        render(blogs);
     }
 
     /**
@@ -25,6 +24,13 @@ public class Application extends AbstractController {
     public static void blog() {
         CMSPage page = CMSPage.getLastest("blog");
         render("cms/blog.html", page);
+    }
+
+    /**
+     * Search action.
+     */
+    public static void search(String search) {
+        render();
     }
 
     /**

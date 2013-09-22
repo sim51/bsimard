@@ -87,12 +87,14 @@
     padding: 9px 15px;
     border: 0;
     text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
-    -webkit-box-shadow: inset 1px 0 0 rgba(0, 0, 0, .1), inset -1px 0 0 rgba(0, 0, 0, .1);
-    -moz-box-shadow: inset 1px 0 0 rgba(0, 0, 0, .1), inset -1px 0 0 rgba(0, 0, 0, .1);
-    box-shadow: inset 1px 0 0 rgba(0, 0, 0, .1), inset -1px 0 0 rgba(0, 0, 0, .1);
+    -webkit-box-shadow: inset 1px 0 0 @secondary, inset -1px 0 0 @secondary;
+    -moz-box-shadow: inset 1px 0 0 @secondary, inset -1px 0 0 @secondary;
+    box-shadow: inset 1px 0 0 @secondary, inset -1px 0 0 @secondary;
+    background-color: @secondary;
+    font-weight: bold;
 
     &:hover {
-      color: #0088CC;
+      background-color: @tertiary;
     }
   }
 
@@ -105,7 +107,7 @@
   }
 
   .bs-docs-sidenav > li > a:hover {
-    background-color: #f5f5f5;
+    background-color: @tertiary;
   }
 
   .bs-docs-sidenav a:hover .icon-chevron-right {

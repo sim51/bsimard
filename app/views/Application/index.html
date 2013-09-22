@@ -11,25 +11,25 @@
             #{cms.display 'home_header' }
                 <ul class="inline span12">
                     <li class="span3" id="free">
-                        <a href="#" class="tooltip" data-placement="bottom" data-toggle="tooltip" title="Un jour comme les autres, Gerry Lane et sa famille se retrouvent coincés dans un embouteillage monstre sur leur trajet quotidien. Ancien enquêteur des Nations Unies, Lane comprend immédiatement que la situation est inhabituelle">
+                        <a href="#" class="tooltip span2" data-placement="bottom" data-toggle="tooltip" title="Un jour comme les autres, Gerry Lane et sa famille se retrouvent coincés dans un embouteillage monstre sur leur trajet quotidien. Ancien enquêteur des Nations Unies, Lane comprend immédiatement que la situation est inhabituelle">
                             <i class="icon-linux"></i>
                             <div>Libriste</div>
                         </a>
                     </li>
                     <li class="span3" id="webdev">
-                        <a href="#" class="tooltip" data-placement="bottom" data-toggle="tooltip" title="Un jour comme les autres, Gerry Lane et sa famille se retrouvent coincés dans un embouteillage monstre sur leur trajet quotidien. Ancien enquêteur des Nations Unies, Lane comprend immédiatement que la situation est inhabituelle">
+                        <a href="#" class="tooltip span2" data-placement="bottom" data-toggle="tooltip" title="Un jour comme les autres, Gerry Lane et sa famille se retrouvent coincés dans un embouteillage monstre sur leur trajet quotidien. Ancien enquêteur des Nations Unies, Lane comprend immédiatement que la situation est inhabituelle">
                             <i class="iconmoon-earth"></i>
                             <div>Développeur Web</div>
                         </A>
                     </li>
                     <li class="span3" id="java">
-                        <a href="#" class="tooltip" data-placement="bottom" data-toggle="tooltip" title="Un jour comme les autres, Gerry Lane et sa famille se retrouvent coincés dans un embouteillage monstre sur leur trajet quotidien. Ancien enquêteur des Nations Unies, Lane comprend immédiatement que la situation est inhabituelle">
+                        <a href="#" class="tooltip span2" data-placement="bottom" data-toggle="tooltip" title="Un jour comme les autres, Gerry Lane et sa famille se retrouvent coincés dans un embouteillage monstre sur leur trajet quotidien. Ancien enquêteur des Nations Unies, Lane comprend immédiatement que la situation est inhabituelle">
                             <i class="icon-coffee"></i>
                             <div>Aimant le café</div>
                         </a>
                     </li>
                     <li class="span3" id="data">
-                        <a href="#" class="tooltip" data-placement="bottom" data-toggle="tooltip" title="Un jour comme les autres, Gerry Lane et sa famille se retrouvent coincés dans un embouteillage monstre sur leur trajet quotidien. Ancien enquêteur des Nations Unies, Lane comprend immédiatement que la situation est inhabituelle">
+                        <a href="#" class="tooltip span2" data-placement="bottom" data-toggle="tooltip" title="Un jour comme les autres, Gerry Lane et sa famille se retrouvent coincés dans un embouteillage monstre sur leur trajet quotidien. Ancien enquêteur des Nations Unies, Lane comprend immédiatement que la situation est inhabituelle">
                             <i class="iconmoon-stack"></i>
                             <div>Et les données</div>
                         </a>
@@ -75,16 +75,28 @@
 <div id="realisation" class="block">
     <div class="container">
         <h2>Mes réalisations</h2>
-        <div class="row-fluid">
-            #{list items:projects, as:'project'}
+        #{cms.display 'projects'}
+            <div class="row-fluid">
                 <div class="box span4">
-                    <h3>${project.title}</h3>
+                    <h3>Mon premier projet</h3>
                     <div>
-                        ${project.body.raw()}
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In schola desinis.<strong>Duo Reges: constructio interrete.</strong> <em>Quonam, inquit, modo?</em> Quod non faceret, si in voluptate summum bonum poneret. <em>Numquam facies.</em> Quod autem in homine praestantissimum atque optimum est, id deseruit.</p>
                     </div>
                 </div>
-            #{/list}
-        </div>
+                <div class="box span4">
+                    <h3>Mon deuxième projet</h3>
+                    <div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In schola desinis.<strong>Duo Reges: constructio interrete.</strong> <em>Quonam, inquit, modo?</em> Quod non faceret, si in voluptate summum bonum poneret. <em>Numquam facies.</em> Quod autem in homine praestantissimum atque optimum est, id deseruit.</p>
+                    </div>
+                </div>
+                <div class="box span4">
+                    <h3>Mon troisième projet</h3>
+                    <div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In schola desinis.<strong>Duo Reges: constructio interrete.</strong> <em>Quonam, inquit, modo?</em> Quod non faceret, si in voluptate summum bonum poneret. <em>Numquam facies.</em> Quod autem in homine praestantissimum atque optimum est, id deseruit.</p>
+                    </div>
+                </div>
+            </div>
+        #{/cms.display}
     </div>
 </div>
 

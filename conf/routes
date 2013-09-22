@@ -3,6 +3,7 @@
 #
 GET     /                                                      Application.index
 GET     /blog                                                  Application.blog
+GET     /search                                                Application.search
 
 #
 # Contact

@@ -2,7 +2,6 @@ body.home {
 
   #valeurs {
     margin: 50px 0;
-    height: 120px;
 
     .tooltip {
       z-index: auto;
@@ -10,9 +9,11 @@ body.home {
 
     li {
       text-align: center;
+      height: 120px;
       a {
         opacity: 1;
         text-align: center;
+        //margin: 0 37.5%;
 
         &:hover {
           text-decoration: none;
@@ -36,19 +37,16 @@ body.home {
       }
       &#webdev {
         a {
-          margin-left: 15px;
           color: @quaternary;
         }
       }
       &#java {
         a {
-          margin-left: 55px;
           color: @tertiary;
         }
       }
       &#data {
         a {
-          margin-left: 74px;
           color: @secondary;
         }
       }
@@ -109,6 +107,23 @@ body.home {
   #blog {
     h2 {
       margin: 50px 0;
+    }
+    a {
+      text-decoration: none;
+      div {
+        color: @grey;
+      }
+
+      &:hover {
+        h3 {
+          color: @secondary;
+          transition: color 1s;
+        }
+        div {
+          color: @primary;
+          transition: color 1s;
+        }
+      }
     }
   }
 
