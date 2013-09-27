@@ -3,7 +3,7 @@
 #{set mainClass:'home' /}
 
 <!-- header-->
-<header id="overview" class="blockDefault firstBlock">
+<section id="overview" class="blockDefault firstBlock">
     <div class="container">
 
         <!-- Mes valeurs -->
@@ -38,10 +38,10 @@
             #{/cms.display}
         </div>
     </div>
-</header>
+</section>
 
 <!-- follow -->
-<div id="follow" class="blockEven">
+<section id="follow" class="blockEven">
     <div class="container">
         <div class="row-fluid ">
             #{cms.display 'home_follow' }
@@ -70,9 +70,9 @@
             #{/cms.display}
         </div>
     </div>
-</div>
+</section>
 
-<div id="realisation" class="block">
+<section id="realisation" class="block">
     <div class="container">
         #{cms.display 'projects'}
             <div class="row-fluid">
@@ -115,9 +115,9 @@
             </div>
         #{/cms.display}
     </div>
-</div>
+</section>
 
-<div id="blog" class="block">
+<section id="blog" class="block">
     <div class="container">
         <h2>Mes derniers tickets</h2>
         <div class="row-fluid">
@@ -133,4 +133,4 @@
             #{/list}
         </div>
     </div>
-</div>
+</section>

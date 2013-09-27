@@ -13,7 +13,7 @@
     </head>
     <body class="#{get 'mainClass' /}">
         <!-- Navbar -->
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <header class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
                     <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -24,7 +24,7 @@
                     <a class="brand" href="@{Application.index()}" title="Benoît Simard">
                         <img class="baseline" src="@{'/public/images/bsimard.png'}" alt=""/>
                     </a>
-                    <div class="nav-collapse collapse">
+                    <nav class="nav-collapse collapse">
                         <ul class="nav">
                             <li>
                                 <a href="@{Application.blog()}" title="Le Blog">Blog</a>
@@ -36,7 +36,7 @@
                                 <a href="@{Contact.index()}" title="Contactez moi !">Contact</a>
                             </li>
                         </ul>
-                    </div>
+                    </nav>
                     <div class="form-search pull-right">
                         <form enctype="application/x-www-form-urlencoded" accept-charset="utf-8" method="get" action="@{Application.search()}">
                             <input type="text" value="" name="search" class="input-large search-query" placeholder="Search">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </header>
 
         #{doLayout /}
 

@@ -2,26 +2,28 @@
 #{set title:'Résultat de recherche' /}
 #{set mainClass:'search' /}
 
-<div class="row">
+<section class="row">
     <div class="span12">
 
         <h1>&{'page.search.title', search}</h1>
 
     #{list items:pages , as:'result'}
-        <div class="resultItem">
+        <article class="resultItem">
             <a href="@{cms.Frontend.show(result.name)}" title="${result.title}">
-                <h2>${result.title}</h2>
+                <header>
+                    <h2>${result.title}</h2>
+                </header>
                 <div>
                     #{if result.description}
                         ${result.description.raw()}
                     #{/if}
                 </div>
             </a>
-        </div>
+        </article>
     #{/list}
 
     #{if nbItems > controllers.Application.ITEM_PER_PAGE}
-        <div id="pagination" class="blockDefault">
+        <nav id="pagination" class="blockDefault">
             <div class="span12 pagination">
                 <ul>
                     *{ Previous link }*
@@ -74,8 +76,8 @@
                     #{/if}
                 </ul>
             </div>
-        </div>
+        </nav>
     #{/if}
 
     </div>
-</div>
+</section>
