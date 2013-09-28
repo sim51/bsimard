@@ -3,6 +3,9 @@
 #{set title:page.title /}
 #{set description:page.description /}
 #{set keywords:page.keywords /}
+#{set 'moreHeader'}
+    <link rel="canonical" href="@@{cms.Frontend.show(page.name)}" />
+#{/set}
 
 
 <article class="row-fluid" itemscope itemtype="http://schema.org/Article">
