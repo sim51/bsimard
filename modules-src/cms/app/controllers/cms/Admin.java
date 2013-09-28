@@ -84,6 +84,19 @@ public class Admin extends Controller {
 	}
 
     /**
+     * Delete a page.
+     *
+     * @param id
+     */
+    public static void delete(String id){
+        CMSPage page = CMSPage.findById(id);
+        notFoundIfNull(page);
+        String template = page.template;
+        page.delete();
+        index(template);
+    }
+
+    /**
      * Upload an image for tiny mce.
      *
      * @param data

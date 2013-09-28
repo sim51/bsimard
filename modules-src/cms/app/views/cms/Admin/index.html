@@ -23,7 +23,7 @@
                 <td>${page.created.format("dd/MM/yyyy")}</td>
                 <td>${page.updated.format("dd/MM/yyyy")}</td>
                 <td>
-                    <a class="btn btn-danger pull-right" href="@{cms.Admin.savePage(page)}&delete=true" title="&{'cms.page.delete'}">
+                    <a class="btn btn-danger pull-right" href="@{cms.Admin.delete(page.name)}&delete=true" title="&{'cms.page.delete'}">
                         <i class="icon-remove"></i>
                     </a>
                     <a class="btn btn-warning pull-right" href="@{cms.Admin.editPage(page.name)}" title="&{'cms.page.edit'}">

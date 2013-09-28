@@ -13,6 +13,7 @@ GET		 /admin/cms/imagelist.js           cms.Admin.imagelist
 POST     /admin/cms/page                   cms.Admin.savePage
 GET      /admin/cms/page                   cms.Admin.savePage
 GET      /admin/cms/{pageName}             cms.Admin.editPage
+GET      /admin/cms/delete/{id}            cms.Admin.delete
 
 #Frontend
 GET     /image/{name}                      cms.Frontend.image
