@@ -39,12 +39,12 @@
         <ul class="unstyled">
         #{if page.previous()}
             <li class="pull-left">
-                <a class="btn btn-primary" href="@{cms.Frontend.show(page.previous().name)}" title="&{'cms.blog.post.previous',page.previous().title}">< ${page.previous().title}</a>
+                <a class="btn btn-primary" href="@{cms.Frontend.show(page.previous().name)}" title="&{'cms.blog.post.previous',page.previous().title}">&lt; ${page.previous().title}</a>
             </li>
         #{/if}
         #{if page.next()}
             <li class="pull-right">
-                <a class="btn btn-primary" href="@{cms.Frontend.show(page.next().name)}" title="&{'cms.blog.post.next', page.next().title}">${page.next().title} ></a>
+                <a class="btn btn-primary" href="@{cms.Frontend.show(page.next().name)}" title="&{'cms.blog.post.next', page.next().title}">${page.next().title} &gt;</a>
             </li>
         #{/if}
         </ul>
