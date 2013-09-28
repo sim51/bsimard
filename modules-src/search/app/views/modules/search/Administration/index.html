@@ -1,0 +1,30 @@
+#{extends 'modules/search/layout.html'/}
+
+<h1>Indexed Objects</h1>
+
+<table class="table table-hover table-striped sortable">
+    <thead>
+        <tr>
+            <th class="span5" data-defaultsort="asc">Index Name</th>
+            <th class="span1">Documents</th>
+            <th class="span1">Objects</th>
+            <th class="span1">Optimized ?</th>
+            <th class="span4">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        #{list items:indexes, as:'index'}
+            <tr>
+                <td>${index.name}</td>
+                <td>${index.documentCount}</td>
+                <td>${index.jpaCount}</td>
+                <td>${index.optimized}</td>
+                <td>
+                    <a class="btn btn-info pull-right" href="@{modules.search.Administration.optimize(index.name)}">Optimize</a>
+                    <a class="btn btn-info pull-right" href="@{modules.search.Administration.reindex(index.name)}">Rebuild</a>
+                    <a class="btn btn-info pull-right" href="@{modules.search.Administration.reopen(index.name)}">Reopen</a>
+                </td>
+            </tr>
+        #{/list}
+    </tbody>
+</table>
