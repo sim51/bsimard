@@ -132,7 +132,17 @@ body.home {
       padding: 20px;
       margin-bottom: 20px;
       text-align: center;
-      height: 400px;
+      height: 420px;
+
+      &:hover {
+        transition: background-color 2s;
+        background-color: @black;
+
+        p {
+          transition: color 1s;
+          color: @white;
+        }
+      }
 
       a {
         color: @black;
