@@ -4,8 +4,15 @@
     <head>
         <title>#{get 'title' /}</title>
         <meta charset="UTF-8">
+        <meta name="author" content="Benoît Simard"/>
+        <meta name="robots" content="index, follow" />
+        <meta name="description" content="#{get 'description' /}" />
+        <meta name="keywords" content="#{get 'keywords' /}" />
+
         <link type="text/css" rel="stylesheet" href="@{'public/stylesheets/main.less'}" />
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/bsimard.png'}">
+        <link rel="alternate" type="application/rss+xml" title="Flux RSS" href="@{cms.Frontend.rss("blog")}" />
+
         #{get 'moreStyles' /}
         <script src="@{'/public/javascripts/jquery.min.js'}" type="text/javascript"></script>
         <script src="@{'/public/javascripts/bootstrap.min.js'}" type="text/javascript"></script>

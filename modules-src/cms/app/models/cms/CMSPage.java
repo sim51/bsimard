@@ -34,6 +34,8 @@ public class CMSPage extends GenericModel {
     @Field
     public String description;
 
+    public String keywords;
+
     @Lob
     @Field
     @Required

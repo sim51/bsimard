@@ -50,6 +50,20 @@
         </div>
     </div>
 
+    <!-- Field keywords -->
+    <div class="control-group #{ifError 'page.keywords'}error#{/ifError}">
+        <label class="control-label" for="keywords">
+            &{'cms.page.keywords'}
+            <a class="form-tooltip" href="#" data-toggle="tooltip" data-placement="right" title="&{'cms.page.keywords.help'}"><i class="icon-info-sign"></i></a>
+        </label>
+        <div class="controls">
+            <input class="span12" type="text" id="keywords" name="page.keywords" placeholder="&{'cms.page.keywords.placeholder'}" value="${page?.keywords}"/>
+            #{if errors?.forKey('page.keywords')}
+                <span class="help-inline">#{error 'page.keywords' /}</span>
+            #{/if}
+        </div>
+    </div>
+
     <!-- Field description -->
     <div class="control-group #{ifError 'page.description'}error#{/ifError}">
         <label class="control-label" for="description">
