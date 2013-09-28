@@ -1,14 +1,32 @@
 #{extends 'page.html' /}
 #{set title:page.title /}
 
-<article class="row-fluid">
+
+<article class="row-fluid" itemscope itemtype="http://schema.org/Article">
     <div class="span12">
-        <h1>${page.title}</h1>
-        ${page.body.raw()}
+        <header>
+            <h1 itemprop="name">${page.title}</h1>
+        </header>
+        <section itemprop="articleBody">
+            ${page.body.raw()}
+        </section>
+        <footer>
+            <ul class="inline pull-right metadata">
+                <li >
+                    <span class="metadata">Auteur :</span>
+                    <a href="/about-me" title="Benoît Simard" rel="author">Benoît Simard</a>
+                </li>
+                <li>
+                    <span class="metadata">Mise à jour :</span>
+                    <time itemprop="dateModified" datetime="2013-09-13">19/09/2013</time>
+                    (version n°<span itemprop="version">4</span>)
+                </li>
+            </ul>
+        </footer>
     </div>
 </article>
 
-<nav class="row">
+<nav class="row blog">
     <div class="span12">
         <ul class="unstyled">
             #{if page.previous()}
@@ -26,3 +44,16 @@
 </nav>
 
 #{cms.editPage pageName:page.name /}
+
+#{set 'moreScripts'}
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4fe07fd564a65b88"></script>
+<script type="text/javascript">
+    addthis.layers({
+        'theme' : 'transparent',
+        'share' : {
+            'position' : 'right',
+            'numPreferredServices' : 5
+        }
+    });
+</script>
+#{/set}

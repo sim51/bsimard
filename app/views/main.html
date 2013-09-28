@@ -9,7 +9,6 @@
         #{get 'moreStyles' /}
         <script src="@{'/public/javascripts/jquery.min.js'}" type="text/javascript"></script>
         <script src="@{'/public/javascripts/bootstrap.min.js'}" type="text/javascript"></script>
-        #{get 'moreScripts' /}
     </head>
     <body class="#{get 'mainClass' /}">
         <!-- Navbar -->
@@ -48,7 +47,7 @@
 
         #{doLayout /}
 
-        <footer>
+        <footer id="footer">
             <div class=" blockOdd">
                 <div class="container">
                     <div class="row-fluid">
@@ -99,6 +98,7 @@
 
         #{cms.display 'trakers' } #{/cms.display}
 
+        #{get 'moreScripts' /}
         <script type="text/javascript">
             $(document).ready(function () {
                 $('.tooltip').tooltip();
