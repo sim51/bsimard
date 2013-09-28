@@ -18,9 +18,12 @@
                     <a href="@@{cms.Frontend.show("about-me")}" title="Benoît Simard" rel="author">Benoît Simard</a>,
                 </li>
                 <li>
+                    <span class="metadata">Créé le :</span>
+                    <time itemprop="dateCreated" datetime="${page.created.format("yyyy/MM/dd")}">${page.created.format("dd MMM yyyy")}</time>
+                </li>
+                <li>
                     <span class="metadata">Mise à jour :</span>
-                    <time itemprop="dateModified" datetime="2013-09-13">19/09/2013</time>
-                    (version n°<span itemprop="version">4</span>),
+                    <time itemprop="dateModified" datetime="${page.updated.format("yyyy/MM/dd")}">${page.updated.format("dd MMM yyyy")}</time>
                 </li>
                 <li><a href="@@{cms.Frontend.show(page.title)}" title="Permalien : ${page.title}" itemprop="url">Permalien</a></li>
             </ul>
