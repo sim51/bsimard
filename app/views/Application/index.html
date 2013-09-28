@@ -119,7 +119,12 @@
 
 <section id="blog" class="block">
     <div class="container">
-        <h2>Mes derniers tickets</h2>
+        <h2>
+            <a href="@{cms.Frontend.rss("blog")}" title="Flux RSS">
+                <i class="icon-rss"></i>
+            </a>
+            Mes derniers tickets
+        </h2>
         <div class="row-fluid">
             #{list items:blogs, as:'blog'}
                 <a href="@{cms.Frontend.show(blog.name)}" title="${blog.title}">
