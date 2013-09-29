@@ -12,14 +12,14 @@
                 TODO : Write a description for ${template} RSS
             #{/cms.display}
         </description>
-        <lastBuildDate>${new Date().format('E, dd MMM yyyy HH:mm:ss Z')}</lastBuildDate>
+        <lastBuildDate>${new Date().format('E, dd MMM yyyy HH:mm:ss Z', "en")}</lastBuildDate>
 
         #{list items:pages, as:'page'}
             <item>
-                <title>${page.title}</title>
+                <title>${page.title.row()}</title>
                 <link>@@{cms.Frontend.show(page.name)}</link>
                 <guid>@@{cms.Frontend.show(page.name)}</guid>
-                <pubDate>${page.created.format('E, dd MMM yyyy HH:mm:ss Z')}</pubDate>
+                <pubDate>${page.created.format('E, dd MMM yyyy HH:mm:ss Z', "en")}</pubDate>
                 <description>
                     <![CDATA[
                         ${page.body.raw()}
