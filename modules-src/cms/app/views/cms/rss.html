@@ -16,7 +16,7 @@
 
         #{list items:pages, as:'page'}
             <item>
-                <title>${page.title.row()}</title>
+                <title>${page.title.raw()}</title>
                 <link>@@{cms.Frontend.show(page.name)}</link>
                 <guid>@@{cms.Frontend.show(page.name)}</guid>
                 <pubDate>${page.created.format('E, dd MMM yyyy HH:mm:ss Z', "en")}</pubDate>
