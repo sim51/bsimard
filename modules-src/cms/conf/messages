@@ -22,6 +22,7 @@ cms.page.created                 = Créé le
 cms.page.updated                 = Mis à jour le
 cms.page.save                    = Enregistrer
 cms.page.delete                  = Supprimer
+cms.page.see                     = Voir
 cms.page.new                     = Nouveau %s
 cms.page.view                    = Voir
 cms.page.edit                    = Modifier

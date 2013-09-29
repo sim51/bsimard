@@ -96,6 +96,10 @@
     <div class="form-actions">
         <button class="btn btn-primary" type="submit">&{'cms.page.save'}</button>
         <button class="btn btn-danger" name="delete" value="delete" type="submit">&{'cms.page.delete'}</button>
+
+        #{if page.name != null && page.template != "Fragment"}
+            <a class="pull-right btn btn-info" href="@{cms.Frontend.show(page.name)}">&{'cms.page.see'}</a>
+        #{/if}
     </div>
 #{/form}
 

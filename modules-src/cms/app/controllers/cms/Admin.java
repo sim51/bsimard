@@ -78,9 +78,12 @@ public class Admin extends Controller {
         }
         page.updated = new Date();
 		page.save();
-		if (request.params.get("savePage") != null)
+        flash.success("Saved");
+
+		if (request.params.get("savePage") != null) {
 			Frontend.show(page.name);
-		index(template);
+        }
+		editPage(page.name);
 	}
 
     /**
