@@ -94,6 +94,12 @@
       .title {
         margin-bottom: 70px;
       }
+
+      div.span4 {
+        width: 100%;
+        margin-left: 0;
+        height: auto !important;
+      }
     }
 
     #blog {
@@ -105,6 +111,23 @@
     .affix-top {
       position: relative;
       height: inherit;
+    }
+
+    #my-card {
+      > .span8 {
+        width: 450px;
+        margin: 0 auto;
+      }
+      .span8 .row-fluid {
+        .span4 {
+          float: left;
+          width: 30%;
+        }
+        .span8 {
+          float: left;
+          width: 70%;
+        }
+      }
     }
   }
 }
