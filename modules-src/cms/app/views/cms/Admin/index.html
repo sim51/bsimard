@@ -10,8 +10,8 @@
         <tr>
             <th class="span3" data-defaultsort="asc">&{'cms.page.title'}</th>
             <th class="span3">&{'cms.page.description'}</th>
-            <th class="span2" data-dateformat="DD/MM/YYYY">&{'cms.page.created'}</th>
-            <th class="span2" data-dateformat="DD/MM/YYYY">&{'cms.page.updated'}</th>
+            <th class="span2" data-defaultsort="desc">&{'cms.page.created'}</th>
+            <th class="span2">&{'cms.page.updated'}</th>
             <th class="span2">&{'cms.action'}</th>
         </tr>
     </thead>
@@ -20,8 +20,8 @@
             <tr>
                 <td>${page.title}</td>
                 <td>${page.description}</td>
-                <td>${page.created.format("dd/MM/yyyy")}</td>
-                <td>${page.updated.format("dd/MM/yyyy")}</td>
+                <td data-dateformat="DD/MM/YYYY">${page.created.format("dd/MM/yyyy")}</td>
+                <td data-dateformat="DD/MM/YYYY">${page.updated.format("dd/MM/yyyy")}</td>
                 <td>
                     <a class="btn btn-danger pull-right" href="@{cms.Admin.delete(page.name)}" title="&{'cms.page.delete'}">
                         <i class="icon-remove"></i>
