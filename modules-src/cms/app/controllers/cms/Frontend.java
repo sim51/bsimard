@@ -36,7 +36,7 @@ public class Frontend extends Controller {
     }
 
     /**
-     * Render an image.
+     * Render an CMSImage.
      *
      * @param name
      */
@@ -44,4 +44,5 @@ public class Frontend extends Controller {
 		CMSImage image = CMSImage.findById(name);
 		renderBinary(image.data.get());
 	}
+
 }

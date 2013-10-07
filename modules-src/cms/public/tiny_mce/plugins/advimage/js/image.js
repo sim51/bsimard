@@ -153,7 +153,8 @@ var ImageDialog = {
 			dir : nl.dir.value,
 			lang : nl.lang.value,
 			usemap : nl.usemap.value,
-			longdesc : nl.longdesc.value
+			longdesc : nl.longdesc.value ,
+            itemprop : nl.microdata.value
 		});
 
 		args.onmouseover = args.onmouseout = '';
