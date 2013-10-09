@@ -4,6 +4,7 @@ import controllers.cms.Admin;
 import models.cms.CMSPage;
 import play.modules.search.Query;
 import play.modules.search.Search;
+import play.mvc.Http;
 
 import java.util.HashMap;
 import java.util.List;
@@ -64,4 +65,20 @@ public class Application extends AbstractController {
         Admin.index("page");
     }
 
+    /**
+     * Sitemap.xml
+     */
+    public static void sitemap(){
+        List<CMSPage> pages = CMSPage.all().fetch();
+        response.contentType = "application/xml";
+        render(pages);
+    }
+
+    /**
+     * Robots.txt
+     */
+    public static void robots(){
+        response.contentType = "text/plain; charset=" + Http.Response.current().encoding;
+        render();
+    }
 }
