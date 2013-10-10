@@ -1,6 +1,7 @@
 package models.cms;
 
 import play.Logger;
+import play.data.validation.MaxSize;
 import play.data.validation.Required;
 import play.db.jpa.GenericModel;
 import play.modules.search.Field;
@@ -23,17 +24,22 @@ public class CMSPage extends GenericModel {
 
     @Id
     @Required
+    @MaxSize(255)
     @Field(sortable = true)
     public String name;
 
     @Required
+    @MaxSize(255)
     @Field(sortable = true)
     public String title;
 
     @Lob
     @Field
+    @MaxSize(150)
     public String description;
 
+    @Field
+    @MaxSize(255)
     public String keywords;
 
     @Lob
