@@ -23,7 +23,6 @@ import java.util.List;
 public class CMSPage extends GenericModel {
 
     @Id
-    @Required
     @MaxSize(255)
     @Field(sortable = true)
     public String name;
@@ -123,6 +122,30 @@ public class CMSPage extends GenericModel {
      */
     public CMSPage next() {
         return CMSPage.find("template = ?1 AND created > ?2 order by created desc",template,  created).first();
+    }
+
+    @Override
+    public CMSPage save(){
+        // create the url name for the page
+        if(this.name == null) {
+            String urlName = this.title.replaceAll("[ |'|`|\"]", "-");
+            urlName = name.replaceAll("[e|é|è|ê]", "e");
+            urlName = urlName.replaceAll("[à|a]", "a");
+            urlName = urlName.replaceAll("[ï|î]", "i");
+
+            // check if already exist and increment a counter
+            Integer i = 0;
+            String findUrl = urlName;
+            while(CMSPage.findById(findUrl) != null) {
+                i++;
+                findUrl = urlName + "-" + i;
+            }
+            this.name = findUrl;
+        }
+        // the updated date
+        this.updated = new Date();
+        _save();
+        return this;
     }
 
 }

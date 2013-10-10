@@ -23,18 +23,20 @@
     <input type="hidden" name="page.template" value="${page.template}" />
 
     <!-- Field name -->
-    <div class="control-group #{ifError 'page.name'}error#{/ifError}">
-        <label class="control-label" for="name">
-            &{'cms.page.name'}
-            <a class="form-tooltip" href="#" data-toggle="tooltip" data-placement="right" title="&{'cms.page.name.help'}"><i class="icon-info-sign"></i></a>
-        </label>
-        <div class="controls">
-            <input class="span12" type="text" id="name" name="page.name" placeholder="&{'cms.page.name.placeholder'}" value="${page?.name}"/>
-            #{if errors?.forKey('page.name')}
-                <span class="help-inline">#{error 'page.name' /}</span>
-            #{/if}
+    #{if page.name}
+        <div class="control-group #{ifError 'page.name'}error#{/ifError}">
+            <label class="control-label" for="name">
+                &{'cms.page.name'}
+                <a class="form-tooltip" href="#" data-toggle="tooltip" data-placement="right" title="&{'cms.page.name.help'}"><i class="icon-info-sign"></i></a>
+            </label>
+            <div class="controls">
+                <input class="span12" type="text" id="name" name="page.name" placeholder="&{'cms.page.name.placeholder'}" value="${page?.name}" disabled="disabled"/>
+                #{if errors?.forKey('page.name')}
+                    <span class="help-inline">#{error 'page.name' /}</span>
+                #{/if}
+            </div>
         </div>
-    </div>
+    #{/if}
 
     <!-- Field title -->
     <div class="control-group #{ifError 'page.title'}error#{/ifError}">

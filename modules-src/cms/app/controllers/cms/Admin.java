@@ -76,7 +76,6 @@ public class Admin extends Controller {
         if (validation.hasErrors()) {
             renderTemplate("@edit", page, template);
         }
-        page.updated = new Date();
 		page.save();
         flash.success("Saved");
 
