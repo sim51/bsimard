@@ -128,8 +128,9 @@ public class CMSPage extends GenericModel {
     public CMSPage save(){
         // create the url name for the page
         if(this.name == null) {
-            String urlName = this.title.replaceAll("[ |'|`|\"]", "-");
-            urlName = name.replaceAll("[e|é|è|ê]", "e");
+            String urlName = title;
+            urlName = urlName.replaceAll("[ |'|`|\"]", "-");
+            urlName = urlName.replaceAll("[e|é|è|ê]", "e");
             urlName = urlName.replaceAll("[à|a]", "a");
             urlName = urlName.replaceAll("[ï|î]", "i");
 
