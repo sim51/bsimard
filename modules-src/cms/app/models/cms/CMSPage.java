@@ -56,6 +56,8 @@ public class CMSPage extends GenericModel {
     @Field(sortable = true)
     public Date updated = new Date();
 
+    public Boolean published = Boolean.FALSE;
+
     /**
      * Find all cms template available (list all file into the cms views directory).
      *
@@ -79,10 +81,14 @@ public class CMSPage extends GenericModel {
      * Find all page by template (order by created date desc).
      *
      * @param template
+     * @param onlyPublished ?
      * @return
      */
-    public static List<CMSPage> getAllByTemplate(String template){
-       return CMSPage.find("template = ?1 order by created desc", template).fetch();
+    public static List<CMSPage> getAllByTemplate(String template, Boolean onlyPublished){
+        if(onlyPublished)
+            return CMSPage.find("template = ?1 and published = true order by created desc", template).fetch();
+        else
+            return CMSPage.find("template = ?1 order by created desc", template).fetch();
     }
 
     /**
@@ -91,8 +97,11 @@ public class CMSPage extends GenericModel {
      * @param template
      * @return
      */
-    public static CMSPage getLastest(String template){
-       return CMSPage.find("template = ?1 order by created desc", template).first();
+    public static CMSPage getLastest(String template, Boolean onlyPublished){
+        if(onlyPublished)
+            return CMSPage.find("template = ?1 AND published = true order by created desc", template, onlyPublished).first();
+        else
+            return CMSPage.find("template = ?1 order by created desc", template).first();
     }
 
     /**
@@ -102,8 +111,11 @@ public class CMSPage extends GenericModel {
      * @param number
      * @return
      */
-    public static List<CMSPage> getLastests(String template, int number){
-        return CMSPage.find("template = ?1 order by created desc", template).fetch(number);
+    public static List<CMSPage> getLastests(String template, Boolean onlyPublished, int number){
+        if(onlyPublished)
+            return CMSPage.find("template = ?1 AND published = ?2 order by created desc", template, onlyPublished).fetch(number);
+        else
+            return CMSPage.find("template = ?1 order by created desc", template).fetch(number);
     }
 
     /**
@@ -112,7 +124,7 @@ public class CMSPage extends GenericModel {
      * @return
      */
     public CMSPage previous() {
-        return CMSPage.find("template = ?1 AND created < ?2 order by created desc", template, created).first();
+        return CMSPage.find("template = ?1 AND published = true AND created < ?2 order by created desc", template, created).first();
     }
 
     /**
@@ -121,7 +133,7 @@ public class CMSPage extends GenericModel {
      * @return
      */
     public CMSPage next() {
-        return CMSPage.find("template = ?1 AND created > ?2 order by created desc",template,  created).first();
+        return CMSPage.find("template = ?1 AND published = true AND created > ?2 order by created desc",template,  created).first();
     }
 
     @Override

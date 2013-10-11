@@ -8,7 +8,7 @@
     </caption>
     <thead>
         <tr>
-            <th class="span3" data-defaultsort="asc">&{'cms.page.title'}</th>
+            <th class="span3">&{'cms.page.title'}</th>
             <th class="span3">&{'cms.page.description'}</th>
             <th class="span2" data-defaultsort="desc">&{'cms.page.created'}</th>
             <th class="span2">&{'cms.page.updated'}</th>
@@ -33,6 +33,10 @@
                         <a class="btn btn-info pull-right" href="@{cms.Frontend.show(page.name)}" title="&{'cms.page.view'}">
                             <i class="icon-eye-open"></i>
                         </a>
+                        <div class="btn-group" data-toggle="buttons-radio">
+                            <a title="&{'cms.action.publish'}" href="@{cms.Admin.publish(page.name)}" class="btn btn-success #{if page?.published}active#{/if}">On</a>
+                            <a title="&{'cms.action.unpublish'}" href="@{cms.Admin.unpublish(page.name)}" class="btn btn-danger #{if !page?.published}active#{/if}">Off</a>
+                        </div>
                     #{/if}
                 </td>
             </tr>

@@ -29,7 +29,7 @@ public class Frontend extends Controller {
      * @param template
      */
     public static void rss(String template) {
-        List<CMSPage> pages = CMSPage.getAllByTemplate(template);
+        List<CMSPage> pages = CMSPage.getAllByTemplate(template, Boolean.TRUE);
         String applicationName = Play.configuration.getProperty("application.name");
         response.contentType = "application/rss+xml";
         render("/cms/rss.html", applicationName, template, pages);
