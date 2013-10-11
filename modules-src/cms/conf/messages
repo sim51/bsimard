@@ -31,6 +31,8 @@ cms.title                        = Administration des %ss
 cms.edit.title                   = Edition de "%s"
 cms.new.title                    = Création de %s
 cms.action                       = Actions
+cms.action.publish               = Publier
+cms.action.unpublish             = Dépublier
 cms.caption                      = %s %ss  trouvés
 
 cms.rss.title                    = %s - Flux RSS des %ss
