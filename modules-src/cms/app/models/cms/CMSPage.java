@@ -99,7 +99,7 @@ public class CMSPage extends GenericModel {
      */
     public static CMSPage getLastest(String template, Boolean onlyPublished){
         if(onlyPublished)
-            return CMSPage.find("template = ?1 AND published = true order by created desc", template, onlyPublished).first();
+            return CMSPage.find("template = ?1 AND published = true order by created desc", template).first();
         else
             return CMSPage.find("template = ?1 order by created desc", template).first();
     }
@@ -113,7 +113,7 @@ public class CMSPage extends GenericModel {
      */
     public static List<CMSPage> getLastests(String template, Boolean onlyPublished, int number){
         if(onlyPublished)
-            return CMSPage.find("template = ?1 AND published = ?2 order by created desc", template, onlyPublished).fetch(number);
+            return CMSPage.find("template = ?1 AND published = true order by created desc", template).fetch(number);
         else
             return CMSPage.find("template = ?1 order by created desc", template).fetch(number);
     }
