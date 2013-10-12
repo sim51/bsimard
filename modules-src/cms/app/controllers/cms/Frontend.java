@@ -1,6 +1,6 @@
 package controllers.cms;
 
-import models.cms.CMSImage;
+import models.cms.CMSFile;
 import models.cms.CMSPage;
 import play.Play;
 import play.mvc.Controller;
@@ -36,12 +36,12 @@ public class Frontend extends Controller {
     }
 
     /**
-     * Render an CMSImage.
+     * Render an CMSFile.
      *
      * @param name
      */
 	public static void image(String name) {
-		CMSImage image = CMSImage.findById(name);
+		CMSFile image = CMSFile.findById(name);
 		renderBinary(image.data.get());
 	}
 

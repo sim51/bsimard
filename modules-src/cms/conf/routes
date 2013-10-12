@@ -12,10 +12,11 @@ POST     /admin/cms/upload                 cms.Admin.upload
 GET		 /admin/cms/imagelist.js           cms.Admin.imagelist
 POST     /admin/cms/page                   cms.Admin.savePage
 GET      /admin/cms/page                   cms.Admin.savePage
-GET      /admin/cms/{pageName}             cms.Admin.editPage
 GET      /admin/cms/delete/{id}            cms.Admin.delete
 GET      /admin/cms/publish/{id}           cms.Admin.publish
 GET      /admin/cms/unpublish/{id}         cms.Admin.unpublish
+*        /admin/cms/filemanager            cms.Admin.filemanager
+GET      /admin/cms/{pageName}             cms.Admin.editPage
 
 #Frontend
 GET     /image/{name}                      cms.Frontend.image

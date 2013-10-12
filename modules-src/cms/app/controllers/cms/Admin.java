@@ -3,10 +3,9 @@ package controllers.cms;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Date;
 import java.util.List;
 
-import models.cms.CMSImage;
+import models.cms.CMSFile;
 import models.cms.CMSPage;
 
 import org.apache.commons.lang.StringUtils;
@@ -124,34 +123,81 @@ public class Admin extends Controller {
     }
 
     /**
-     * Upload an image for tiny mce.
-     *
-     * @param data
-     * @param title
+     * Manager action for filemanager.
      */
-	public static void upload(File data, String title) {
-		CMSImage image = new CMSImage();
-		image.name = data.getName();
-		if (StringUtils.isEmpty(title))
-			image.title = data.getName();
-		else
-			image.title = title;
-		String mimeType = MimeTypes.getContentType(data.getName());
-		image.data = new Blob();
-		try {
-			image.data.set(new FileInputStream(data), mimeType);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		image.save();
-		redirectToStatic("/public/tiny_mce/plugins/advimage/image.htm");
-	}
+    public static void filemanager(){
+        String method = params.get("mode");
 
-    /**
-     * Display all image.
-     */
-    public static void imagelist() {
-		List<CMSImage> images = CMSImage.findAll();
-		render(images);
-	}
+        // Get information for a file
+        if(method.equals("getinfo")) {
+            String path =  params.get("path");
+            Boolean getSize = params.get("getsize", Boolean.class);
+
+            CMSFile file = CMSFile.findById(path);
+            response.contentType = "application/json";
+            render("cms/Admin/filemanager/getinfo.html", file);
+
+        }
+
+        // Get information for a folder
+        if(method.equals("getfolder")) {
+            String path =  params.get("path");
+            Boolean getSize = params.get("getsize", Boolean.class);
+
+            List<CMSFile> files = CMSFile.getFolderChildren(path);
+            response.contentType = "application/json";
+            render("cms/Admin/filemanager/getfolder.html", files);
+        }
+
+        // Rename a file (TODO)
+        if(method.equals("rename")) {
+            String old =  params.get("old");
+            String aNew =  params.get("new");
+
+            response.contentType = "application/json";
+            render("cms/Admin/filemanager/rename.html");
+        }
+
+        // Move a file (TODO)
+        if(method.equals("move")) {
+            String old =  params.get("old");
+            String aNew =  params.get("new");
+
+            response.contentType = "application/json";
+            render("cms/Admin/filemanager/move.html");
+        }
+
+        // Delete a folder
+        if(method.equals("delete")) {
+            String path =  params.get("path");
+
+            CMSFile file = CMSFile.findById(path);
+            if(file.data != null && file.data.getFile() != null)
+                file.data.getFile().delete();
+            file.delete();
+
+            response.contentType = "application/json";
+            render("cms/Admin/filemanager/delete.html", path);
+        }
+
+        // Adding a file (TODO)
+        if(method.equals("add")) {
+            response.contentType = "application/json";
+            render("cms/Admin/filemanager/add.html");
+        }
+
+        // Adding a folder (TODO)
+        if(method.equals("addFolder")) {
+            response.contentType = "application/json";
+            render("cms/Admin/filemanager/addfolder.html");
+        }
+
+        // Serve the file to the user
+        if(method.equals("download")) {
+            String path =  params.get("path");
+            Frontend.image(path);
+        }
+
+    }
+
 }
