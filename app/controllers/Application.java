@@ -6,7 +6,6 @@ import play.modules.search.Query;
 import play.modules.search.Search;
 import play.mvc.Http;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -22,7 +21,7 @@ public class Application extends AbstractController {
      * Home page.
      */
     public static void index() {
-        List<CMSPage> blogs = CMSPage.getLastests("blog", 3);
+        List<CMSPage> blogs = CMSPage.getLastests("blog",Boolean.TRUE, 3);
         render(blogs);
     }
 
@@ -30,7 +29,7 @@ public class Application extends AbstractController {
      * Blog page.
      */
     public static void blog() {
-        CMSPage page = CMSPage.getLastest("blog");
+        CMSPage page = CMSPage.getLastest("blog", Boolean.TRUE);
         render("cms/blog.html", page);
     }
 

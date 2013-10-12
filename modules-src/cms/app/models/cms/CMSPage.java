@@ -1,6 +1,7 @@
 package models.cms;
 
 import play.Logger;
+import play.data.validation.MaxSize;
 import play.data.validation.Required;
 import play.db.jpa.GenericModel;
 import play.modules.search.Field;
@@ -22,18 +23,22 @@ import java.util.List;
 public class CMSPage extends GenericModel {
 
     @Id
-    @Required
+    @MaxSize(255)
     @Field(sortable = true)
     public String name;
 
     @Required
+    @MaxSize(255)
     @Field(sortable = true)
     public String title;
 
     @Lob
     @Field
+    @MaxSize(150)
     public String description;
 
+    @Field
+    @MaxSize(255)
     public String keywords;
 
     @Lob
@@ -50,6 +55,8 @@ public class CMSPage extends GenericModel {
 
     @Field(sortable = true)
     public Date updated = new Date();
+
+    public Boolean published = Boolean.FALSE;
 
     /**
      * Find all cms template available (list all file into the cms views directory).
@@ -74,10 +81,14 @@ public class CMSPage extends GenericModel {
      * Find all page by template (order by created date desc).
      *
      * @param template
+     * @param onlyPublished ?
      * @return
      */
-    public static List<CMSPage> getAllByTemplate(String template){
-       return CMSPage.find("template = ?1 order by created desc", template).fetch();
+    public static List<CMSPage> getAllByTemplate(String template, Boolean onlyPublished){
+        if(onlyPublished)
+            return CMSPage.find("template = ?1 and published = true order by created desc", template).fetch();
+        else
+            return CMSPage.find("template = ?1 order by created desc", template).fetch();
     }
 
     /**
@@ -86,8 +97,11 @@ public class CMSPage extends GenericModel {
      * @param template
      * @return
      */
-    public static CMSPage getLastest(String template){
-       return CMSPage.find("template = ?1 order by created desc", template).first();
+    public static CMSPage getLastest(String template, Boolean onlyPublished){
+        if(onlyPublished)
+            return CMSPage.find("template = ?1 AND published = true order by created desc", template).first();
+        else
+            return CMSPage.find("template = ?1 order by created desc", template).first();
     }
 
     /**
@@ -97,8 +111,11 @@ public class CMSPage extends GenericModel {
      * @param number
      * @return
      */
-    public static List<CMSPage> getLastests(String template, int number){
-        return CMSPage.find("template = ?1 order by created desc", template).fetch(number);
+    public static List<CMSPage> getLastests(String template, Boolean onlyPublished, int number){
+        if(onlyPublished)
+            return CMSPage.find("template = ?1 AND published = true order by created desc", template).fetch(number);
+        else
+            return CMSPage.find("template = ?1 order by created desc", template).fetch(number);
     }
 
     /**
@@ -107,7 +124,7 @@ public class CMSPage extends GenericModel {
      * @return
      */
     public CMSPage previous() {
-        return CMSPage.find("template = ?1 AND created < ?2 order by created desc", template, created).first();
+        return CMSPage.find("template = ?1 AND published = true AND created < ?2 order by created desc", template, created).first();
     }
 
     /**
@@ -116,7 +133,32 @@ public class CMSPage extends GenericModel {
      * @return
      */
     public CMSPage next() {
-        return CMSPage.find("template = ?1 AND created > ?2 order by created desc",template,  created).first();
+        return CMSPage.find("template = ?1 AND published = true AND created > ?2 order by created desc",template,  created).first();
+    }
+
+    @Override
+    public CMSPage save(){
+        // create the url name for the page
+        if(this.name == null) {
+            String urlName = title;
+            urlName = urlName.replaceAll("[ |'|`|\"]", "-");
+            urlName = urlName.replaceAll("[e|é|è|ê]", "e");
+            urlName = urlName.replaceAll("[à|a]", "a");
+            urlName = urlName.replaceAll("[ï|î]", "i");
+
+            // check if already exist and increment a counter
+            Integer i = 0;
+            String findUrl = urlName;
+            while(CMSPage.findById(findUrl) != null) {
+                i++;
+                findUrl = urlName + "-" + i;
+            }
+            this.name = findUrl;
+        }
+        // the updated date
+        this.updated = new Date();
+        _save();
+        return this;
     }
 
 }

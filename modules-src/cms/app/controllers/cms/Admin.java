@@ -38,7 +38,7 @@ public class Admin extends Controller {
                 template = "Fragment";
             }
         }
-		List<CMSPage> pages = CMSPage.getAllByTemplate(template);
+		List<CMSPage> pages = CMSPage.getAllByTemplate(template, Boolean.FALSE);
 		render(pages, template);
 	}
 
@@ -76,7 +76,6 @@ public class Admin extends Controller {
         if (validation.hasErrors()) {
             renderTemplate("@edit", page, template);
         }
-        page.updated = new Date();
 		page.save();
         flash.success("Saved");
 
@@ -97,6 +96,31 @@ public class Admin extends Controller {
         String template = page.template;
         page.delete();
         index(template);
+    }
+
+    /**
+     * Published the page.
+     *
+     * @param id
+     */
+    public static void publish(String id){
+        CMSPage page = CMSPage.findById(id);
+        notFoundIfNull(page);
+        page.published = Boolean.TRUE;
+        page.save();
+        index(page.template);
+    }
+
+    /**
+     * UNpublished the page.
+     * @param id
+     */
+    public static void unpublish(String id){
+        CMSPage page = CMSPage.findById(id);
+        notFoundIfNull(page);
+        page.published = Boolean.FALSE;
+        page.save();
+        index(page.template);
     }
 
     /**

@@ -22,6 +22,7 @@ public class Tags extends FastTags {
             page.description = "Fragment on " + template.template.name;
             page.body = "";
             page.template = "Fragment";
+            page.published = Boolean.TRUE;
             page.save();
             out.print(JavaExtensions.toString(body));
         } else if (page.body.length() == 0) {
