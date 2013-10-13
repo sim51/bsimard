@@ -153,8 +153,8 @@ public class Admin extends Controller {
 
             String oldPath;
             String oldName;
-            if (old.lastIndexOf('/') > 0) {
-                oldPath = old.substring(0, old.lastIndexOf('/'));
+            if (old.lastIndexOf('/') >= 0) {
+                oldPath = old.substring(0, old.lastIndexOf('/') +1);
                 oldName = old.substring(old.lastIndexOf('/') + 1, old.length());
             } else {
                 oldPath = "";
@@ -177,13 +177,36 @@ public class Admin extends Controller {
             render("cms/Admin/filemanager/rename.html", oldPath, oldName, newName, newPath);
         }
 
-        // Move a file (TODO)
-        if (method.equals("move")) {
+        // Rename a file / folder
+        if ( method.equals("move")) {
             String old = params.get("old");
-            String aNew = params.get("new");
+            String newPath = params.get("new");
+            if(!newPath.endsWith("/")){
+                newPath += "/";
+            }
+
+            String oldPath;
+            String oldName;
+            if (old.lastIndexOf('/') >= 0) {
+                oldPath = old.substring(0, old.lastIndexOf('/') +1);
+                oldName = old.substring(old.lastIndexOf('/') + 1, old.length());
+            } else {
+                oldPath = "";
+                oldName = old;
+            }
+            CMSFile file = CMSFile.findById(old);
+
+            // TODO test if the file already exist
+            CMSFile newFile = new CMSFile();
+            newFile.isFolder = file.isFolder;
+            newFile.name = newPath + oldName;
+            newFile.title= oldName;
+            newFile.data = file.data;
+            newFile.save();
+            file.delete();
 
             response.contentType = "application/json";
-            render("cms/Admin/filemanager/move.html");
+            render("cms/Admin/filemanager/move.html", oldPath, oldName, newPath);
         }
 
         // Delete a folder
@@ -191,6 +214,7 @@ public class Admin extends Controller {
             String path = params.get("path");
 
             CMSFile file = CMSFile.findById(path);
+
             // TODO : delete all files under this folder
             if (file.data != null && file.data.exists()){
                 file.data.getFile().delete();
@@ -203,6 +227,12 @@ public class Admin extends Controller {
         // Adding a file
         if (request.method.equals("POST") && method.equals("add")) {
             String path = params.get("currentpath");
+            if(path.endsWith("true")) {
+                path = path.replaceAll("true$", "");
+            }
+            if(!path.endsWith("/")) {
+                path += "/";
+            }
             String filename = params.get("filepath");
             File upload = params.get("newfile", File.class);
 
