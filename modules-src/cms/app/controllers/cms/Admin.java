@@ -131,6 +131,9 @@ public class Admin extends Controller {
             if(path.endsWith("true")) {
                 path = path.replaceAll("true$", "");
             }
+            if(path.endsWith("/")) {
+                path = path.replaceAll("/$", "");
+            }
 
             CMSFile file = CMSFile.findById(path);
             response.contentType = "application/json";
