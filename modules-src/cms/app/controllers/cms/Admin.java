@@ -146,7 +146,7 @@ public class Admin extends Controller {
             render("cms/Admin/filemanager/getfolder.html", files);
         }
 
-        // Rename a file
+        // Rename a file / folder
         if (method.equals("rename")) {
             String old = params.get("old");
             String newName = params.get("new");
@@ -163,8 +163,10 @@ public class Admin extends Controller {
             String newPath = oldPath + newName;
             CMSFile file = CMSFile.findById(old);
 
+            // TODO test if the file already exist
+
             CMSFile newFile = new CMSFile();
-            newFile.isFolder = Boolean.FALSE;
+            newFile.isFolder = file.isFolder;
             newFile.name = newPath;
             newFile.title= newName;
             newFile.data = file.data;
@@ -189,6 +191,7 @@ public class Admin extends Controller {
             String path = params.get("path");
 
             CMSFile file = CMSFile.findById(path);
+            // TODO : delete all files under this folder
             if (file.data != null && file.data.exists()){
                 file.data.getFile().delete();
             }
@@ -197,11 +200,13 @@ public class Admin extends Controller {
             render("cms/Admin/filemanager/delete.html", path);
         }
 
-        // Adding a file (TODO)
+        // Adding a file
         if (request.method.equals("POST") && method.equals("add")) {
             String path = params.get("currentpath");
             String filename = params.get("filepath");
             File upload = params.get("newfile", File.class);
+
+            // TODO test if the file exist !
 
             CMSFile file = new CMSFile();
             file.isFolder = Boolean.FALSE;
@@ -215,12 +220,15 @@ public class Admin extends Controller {
             render("cms/Admin/filemanager/add.html", path, filename);
         }
 
-        // Adding a folder (TODO)
+        // Adding a folder
         if (method.equals("addfolder")) {
             String path = params.get("path");
             if(!path.endsWith("/")){
                 path += "/";
             }
+
+            // TODO test if the folder exist !
+
             String name = params.get("name");
             CMSFile folder = new CMSFile();
             folder.isFolder = Boolean.TRUE;
@@ -233,8 +241,10 @@ public class Admin extends Controller {
 
         // Serve the file to the user
         if (method.equals("download")) {
-            String path = params.get("path");
-            Frontend.image(path);
+            String name = params.get("path");
+            CMSFile image = CMSFile.findById(name);
+            response.contentType = image.data.type();
+            renderBinary(image.data.get());
         }
 
     }

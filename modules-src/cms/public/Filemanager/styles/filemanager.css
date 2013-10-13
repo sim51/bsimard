@@ -15,6 +15,7 @@
 body {
 	padding: 10px;
 	background-color:#F4F1ED;
+	overflow-x:hidden; /** prevent overflow if #uploader h1 path value is too long */
 }
 
 video, audio {
@@ -25,7 +26,6 @@ video, audio {
 	text-align: right;
 	height: auto;
 	min-height:30px;
-	max-height: 80px;
 	overflow: hidden;
 }
 
@@ -36,6 +36,7 @@ video, audio {
 	line-height:1.9em;
 	font-size: 0.8em;
 	text-shadow:1px 1px 0px #ffffff;
+	word-break: break-all;
 }
 
 #uploadresponse {
@@ -178,9 +179,14 @@ button:focus {
 	margin:0;
 	position:relative;
 	top:0px;
-	width:215px;
+	width:221px;
 	height:32px;
 	overflow: hidden;
+}
+
+/** IE10 hack */
+_::-ms-reveal, #file-input-container {
+	overflow:auto;
 }
 
 /** Firefox hack */
@@ -192,7 +198,7 @@ button:focus {
 }
 
 /** Opera hack */
-x:-o-prefocus, #file-input-container {top:16px;width:198px;}
+x:-o-prefocus, #file-input-container {top:16px;width:205px;}
 
 #newfile {
 	position: absolute;
@@ -248,6 +254,39 @@ button#browse span {
 	text-shadow: none;
 }
 /** Input file Replacement - end */
+
+#q {
+	background-color: #F2F2F2;
+	border: 1px solid #dcdcdc;
+	margin: 0.5em 0 0;
+	padding: 0.1em 0.3em;
+	line-height: 1.7em;
+	width: 200px;
+	
+}
+
+#search span.q-inactive {
+	color: #a1a1a1;
+	font-style: italic;
+	font-size: 0.85em;
+	position: relative;
+	left: -200px;
+}
+
+#search a.q-reset {
+	display: inline-table;
+	width: 20px;
+	height: 20px;
+	background: url(../images/reset.png) no-repeat center center;
+	position: relative;
+	opacity:0.5;
+	left: -30px;
+	top: 5px;
+	z-index: 24;
+}
+
+/** Opera hack */
+x:-o-prefocus, #search a.q-reset {top:-14px;}
 
 #contents.grid {
 	padding: 25px;
@@ -386,6 +425,7 @@ div.clip {
 #select span, .contextMenu li.select a { background-image: url(../images/accept.png); }
 #download span, .contextMenu li.download a { background-image: url(../images/download.png); }
 #rename span, .contextMenu li.rename a { background-image: url(../images/pencil.png); }
+#move span, .contextMenu li.move a { background-image: url(../images/move.png); }
 #delete span, .contextMenu li.delete a { background-image: url(../images/bin_closed.png); }
 #upload span { background-image: url(../images/upload.png); }
 #upload span.loading { background-image: url(../images/ajax-loader.gif);color:#555555;font-size:0.9em; }
@@ -462,4 +502,24 @@ button.ON {
 	display:inline-table;
 	width:30px;
 	height:30px;
+}
+
+/* IE10-11 styles */
+html[data-useragent*='MSIE 10.0'] #uploader button,
+html[data-useragent*='MSIE 11.0'] #uploader button {
+	vertical-align: top;
+}
+html[data-useragent*='MSIE 10.0'] #file-input-container,
+html[data-useragent*='MSIE 11.0'] #file-input-container {
+ 	width: 220px;
+ 	height: 32px;
+ 	overflow: hidden;
+}
+html[data-useragent*='MSIE 10.0'] #filepath,
+html[data-useragent*='MSIE 11.0'] #filepath {
+	height: 22px;
+}
+html[data-useragent*='MSIE 10.0'] #newfile,
+html[data-useragent*='MSIE 11.0'] #newfile {
+	height: 23px;
 }

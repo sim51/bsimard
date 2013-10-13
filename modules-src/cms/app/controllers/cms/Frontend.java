@@ -42,6 +42,7 @@ public class Frontend extends Controller {
      */
 	public static void image(String name) {
 		CMSFile image = CMSFile.findById(name);
+        response.contentType = image.data.type();
 		renderBinary(image.data.get());
 	}
 
@@ -51,6 +52,7 @@ public class Frontend extends Controller {
     public static void image() {
         String name = params.get("name");
         CMSFile image = CMSFile.findById(name);
+        response.contentType = image.data.type();
         renderBinary(image.data.get());
     }
 
