@@ -4,7 +4,7 @@
             "Path": "${file.name}",
             "Filename": "${file.title}",
             "File Type": #{if file.isFolder}"dir"#{/if}#{else}"${file.data.type}"#{/else},
-            "Preview": #{if file.isFolder}"images\/fileicons\/_Open.png"#{/if}#{else}"@{cms.Frontend.image(file.name)}"#{/else},
+            "Preview": #{if file.isFolder}"images\/fileicons\/_Open.png"#{/if}#{else}"/image?name=${file.name}"#{/else},
             "Properties": {
                 "Date Created": "${file.created}",
                 "Date Modified": "${file.updated}",

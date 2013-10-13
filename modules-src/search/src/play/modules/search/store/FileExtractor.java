@@ -40,14 +40,16 @@ public class FileExtractor {
         // Guess mime
         String mime = mimeGuesser.guess (blob);
         // Invoke the handlers
-        String fileName = blob.getFile().getName();
-        for (TextExtractor extractor : extractors) {
-            if (extractor.handles(mime)) {
-                Logger.debug ("Using %s extractor to handle blob %s, mime=%s", extractor.getClass().getName(), fileName, blob.type());
-                return extractor.extract(blob);
+        if(blob.exists()){
+            String fileName = blob.getFile().getName();
+            for (TextExtractor extractor : extractors) {
+                if (extractor.handles(mime)) {
+                    Logger.debug ("Using %s extractor to handle blob %s, mime=%s", extractor.getClass().getName(), fileName, blob.type());
+                    return extractor.extract(blob);
+                }
             }
+            Logger.warn("No handlers able to index %s mime type, file was %s", mime, fileName);
         }
-        Logger.warn("No handlers able to index %s mime type, file was %s", mime, fileName);
         return null;
     }
 }

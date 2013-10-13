@@ -45,4 +45,13 @@ public class Frontend extends Controller {
 		renderBinary(image.data.get());
 	}
 
+    /**
+     * Render an CMSFile.
+     */
+    public static void image() {
+        String name = params.get("name");
+        CMSFile image = CMSFile.findById(name);
+        renderBinary(image.data.get());
+    }
+
 }
