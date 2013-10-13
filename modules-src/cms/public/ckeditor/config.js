@@ -5,6 +5,7 @@
 
 CKEDITOR.editorConfig = function( config ) {
 	config.language = 'fr',
-    config.filebrowserBrowseUrl = '/public/Filemanager/index.html'
+    config.filebrowserBrowseUrl = '/public/Filemanager/index.html',
+    config.contentsCss = '/public/stylesheets/main.less'
 };
 
