@@ -128,7 +128,9 @@ public class Admin extends Controller {
         // Get information for a file
         if (method.equals("getinfo")) {
             String path = params.get("path");
-            Boolean getSize = params.get("getsize", Boolean.class);
+            if(path.endsWith("true")) {
+                path = path.replaceAll("true$", "");
+            }
 
             CMSFile file = CMSFile.findById(path);
             response.contentType = "application/json";
@@ -139,6 +141,13 @@ public class Admin extends Controller {
         // Get information for a folder
         if (method.equals("getfolder")) {
             String path = params.get("path");
+            if(path.endsWith("true")) {
+                path = path.replaceAll("true$", "");
+            }
+            if(!path.endsWith("/")){
+                path += "/";
+            }
+
             Boolean getSize = params.get("getsize", Boolean.class);
 
             List<CMSFile> files = CMSFile.getFolderChildren(path);

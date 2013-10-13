@@ -44,7 +44,7 @@ public class CMSFile extends GenericModel {
      * @return
      */
     public static List<CMSFile> getFolderChildren(String path){
-        return CMSFile.find("name LIKE '%'").fetch();
+        return CMSFile.find("name NOT LIKE '" + path + "%/%' and name like '" + path + "%'").fetch();
     }
 
 }

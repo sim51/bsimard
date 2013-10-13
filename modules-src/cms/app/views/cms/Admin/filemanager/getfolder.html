@@ -1,7 +1,7 @@
 {
     #{list items:files, as:'file'}
         "${file.name}": {
-            "Path": "${file.name}",
+            "Path": "${file.name}#{if file.isFolder}/#{/if}",
             "Filename": "${file.title}",
             "File Type": #{if file.isFolder}"dir"#{/if}#{else}"${file.data.type}"#{/else},
             "Preview": #{if file.isFolder}"images\/fileicons\/_Open.png"#{/if}#{else}"/image?name=${file.name}"#{/else},
