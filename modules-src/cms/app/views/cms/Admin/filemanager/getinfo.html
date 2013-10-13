@@ -1,3 +1,10 @@
+#{if error}
+{
+    "Error": "${error}",
+    "Code": -1
+}
+#{/if}
+#{else}
 #{if file}
 {
     "Path": "${file?.name}",
@@ -15,3 +22,4 @@
     "Code": 0
 }
 #{/if}
+#{/else}

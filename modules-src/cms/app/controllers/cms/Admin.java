@@ -124,30 +124,34 @@ public class Admin extends Controller {
      */
     public static void filemanager() throws FileNotFoundException {
         String method = params.get("mode");
+        String error = null;
 
         // Get information for a file
         if (method.equals("getinfo")) {
             String path = params.get("path");
-            if(path.endsWith("true")) {
+            if (path.endsWith("true")) {
                 path = path.replaceAll("true$", "");
             }
-            if(path.endsWith("/")) {
+            if (path.endsWith("/")) {
                 path = path.replaceAll("/$", "");
             }
 
             CMSFile file = CMSFile.findById(path);
+            if (!path.equals("") && file == null) {
+                error = "File '" + path + "' not found";
+            }
             response.contentType = "application/json";
-            render("cms/Admin/filemanager/getinfo.html", file);
+            render("cms/Admin/filemanager/getinfo.html", file, error);
 
         }
 
         // Get information for a folder
         if (method.equals("getfolder")) {
             String path = params.get("path");
-            if(path.endsWith("true")) {
+            if (path.endsWith("true")) {
                 path = path.replaceAll("true$", "");
             }
-            if(!path.endsWith("/")){
+            if (!path.endsWith("/")) {
                 path += "/";
             }
 
@@ -166,7 +170,7 @@ public class Admin extends Controller {
             String oldPath;
             String oldName;
             if (old.lastIndexOf('/') >= 0) {
-                oldPath = old.substring(0, old.lastIndexOf('/') +1);
+                oldPath = old.substring(0, old.lastIndexOf('/') + 1);
                 oldName = old.substring(old.lastIndexOf('/') + 1, old.length());
             } else {
                 oldPath = "";
@@ -175,50 +179,62 @@ public class Admin extends Controller {
             String newPath = oldPath + newName;
             CMSFile file = CMSFile.findById(old);
 
-            // TODO test if the file already exist
+            if (file == null) {
+                error = "Source file '" + old + "' not found";
+            }
 
-            CMSFile newFile = new CMSFile();
-            newFile.isFolder = file.isFolder;
-            newFile.name = newPath;
-            newFile.title= newName;
-            newFile.data = file.data;
-            newFile.save();
-            file.delete();
+            if (CMSFile.findById(newPath) == null) {
+                CMSFile newFile = new CMSFile();
+                newFile.isFolder = file.isFolder;
+                newFile.name = newPath;
+                newFile.title = newName;
+                newFile.data = file.data;
+                newFile.save();
+                file.delete();
+            } else {
+                error = "Can't rename file '" + old + "' to '" + newPath + "'. A file with that name already exist !";
+            }
 
             response.contentType = "application/json";
-            render("cms/Admin/filemanager/rename.html", oldPath, oldName, newName, newPath);
+            render("cms/Admin/filemanager/rename.html", oldPath, oldName, newName, newPath, error);
         }
 
-        // Rename a file / folder
-        if ( method.equals("move")) {
+        // move a file / folder
+        if (method.equals("move")) {
             String old = params.get("old");
             String newPath = params.get("new");
-            if(!newPath.endsWith("/")){
+            if (!newPath.endsWith("/")) {
                 newPath += "/";
             }
 
             String oldPath;
             String oldName;
             if (old.lastIndexOf('/') >= 0) {
-                oldPath = old.substring(0, old.lastIndexOf('/') +1);
+                oldPath = old.substring(0, old.lastIndexOf('/') + 1);
                 oldName = old.substring(old.lastIndexOf('/') + 1, old.length());
             } else {
                 oldPath = "";
                 oldName = old;
             }
             CMSFile file = CMSFile.findById(old);
+            if (file == null) {
+                error = "Source file '" + old + "' not found";
+            }
 
-            // TODO test if the file already exist
-            CMSFile newFile = new CMSFile();
-            newFile.isFolder = file.isFolder;
-            newFile.name = newPath + oldName;
-            newFile.title= oldName;
-            newFile.data = file.data;
-            newFile.save();
-            file.delete();
+            if (CMSFile.findById(newPath + oldName) == null) {
+                CMSFile newFile = new CMSFile();
+                newFile.isFolder = file.isFolder;
+                newFile.name = newPath + oldName;
+                newFile.title = oldName;
+                newFile.data = file.data;
+                newFile.save();
+                file.delete();
+            } else {
+                error = "Can't move file '" + old + "' to '" + newPath + "'. A file with that name already exist !";
+            }
 
             response.contentType = "application/json";
-            render("cms/Admin/filemanager/move.html", oldPath, oldName, newPath);
+            render("cms/Admin/filemanager/move.html", oldPath, oldName, newPath, error);
         }
 
         // Delete a folder
@@ -228,7 +244,7 @@ public class Admin extends Controller {
             CMSFile file = CMSFile.findById(path);
 
             // TODO : delete all files under this folder
-            if (file.data != null && file.data.exists()){
+            if (file.data != null && file.data.exists()) {
                 file.data.getFile().delete();
             }
             file.delete();
@@ -239,46 +255,50 @@ public class Admin extends Controller {
         // Adding a file
         if (request.method.equals("POST") && method.equals("add")) {
             String path = params.get("currentpath");
-            if(path.endsWith("true")) {
+            if (path.endsWith("true")) {
                 path = path.replaceAll("true$", "");
             }
-            if(!path.endsWith("/")) {
+            if (!path.endsWith("/")) {
                 path += "/";
             }
             String filename = params.get("filepath");
             File upload = params.get("newfile", File.class);
 
-            // TODO test if the file exist !
+            if (CMSFile.findById(path + filename) == null) {
+                CMSFile file = new CMSFile();
+                file.isFolder = Boolean.FALSE;
+                file.name = path + filename;
+                file.title = filename;
+                String mimeType = MimeTypes.getContentType(upload.getName());
+                file.data = new Blob();
+                file.data.set(new FileInputStream(upload), mimeType);
+                file.save();
+            } else {
+                error = "A file with the name '" + path + filename + "' already exist !";
+            }
 
-            CMSFile file = new CMSFile();
-            file.isFolder = Boolean.FALSE;
-            file.name = path + filename;
-            file.title = filename;
-            String mimeType = MimeTypes.getContentType(upload.getName());
-            file.data = new Blob();
-            file.data.set(new FileInputStream(upload), mimeType);
-            file.save();
-
-            render("cms/Admin/filemanager/add.html", path, filename);
+            render("cms/Admin/filemanager/add.html", path, filename, error);
         }
 
         // Adding a folder
         if (method.equals("addfolder")) {
             String path = params.get("path");
-            if(!path.endsWith("/")){
+            if (!path.endsWith("/")) {
                 path += "/";
             }
 
-            // TODO test if the folder exist !
-
             String name = params.get("name");
-            CMSFile folder = new CMSFile();
-            folder.isFolder = Boolean.TRUE;
-            folder.name = path + name;
-            folder.title = name;
-            folder.save();
+            if (CMSFile.findById(path + name) == null) {
+                CMSFile folder = new CMSFile();
+                folder.isFolder = Boolean.TRUE;
+                folder.name = path + name;
+                folder.title = name;
+                folder.save();
+            } else {
+                error = "A folder with the name '" + path + name + "' already exist !";
+            }
             response.contentType = "application/json";
-            render("cms/Admin/filemanager/addfolder.html", path, name);
+            render("cms/Admin/filemanager/addfolder.html", path, name, error);
         }
 
         // Serve the file to the user

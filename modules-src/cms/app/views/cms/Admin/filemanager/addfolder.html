@@ -1,1 +1,6 @@
+#{if error}
+{ "Error": "${error}", "Code": -1 }
+#{/if}
+#{else}
 { "Parent": "${path}", "Name": "${name}", "Error": "No error", "Code": 0 }
+#{/else}
