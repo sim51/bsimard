@@ -4,10 +4,10 @@
  */
 
 CKEDITOR.editorConfig = function (config) {
-    config.language = 'fr',
-    config.filebrowserBrowseUrl = '/public/Filemanager/index.html',
-    config.contentsCss = '/public/stylesheets/main.less',
-    config.allowedContent = true,
+    config.language = 'fr';
+    config.filebrowserBrowseUrl = '/public/Filemanager/index.html';
+    config.contentsCss = '/public/stylesheets/main.less';
+    config.allowedContent = true;
     // Toolbar configuration generated automatically by the editor based on config.toolbarGroups.
     config.toolbar = [
         { name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print'] },
@@ -21,6 +21,8 @@ CKEDITOR.editorConfig = function (config) {
         { name: 'insert', items: [ 'Image', 'Flash', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak', 'Iframe' ] },
         { name: 'styles', items: [ 'Styles', 'Format'] },
         { name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] }
-    ]
+    ];
+    CKEDITOR.dtd.$removeEmpty.i = 0;
+    config.floatSpaceDockedOffsetY = 50;
 };
 

@@ -81,6 +81,20 @@ public class Admin extends Controller {
     }
 
     /**
+     * Saving a CMS page.
+     *
+     * @param name
+     * @param body
+     */
+    public static void ajaxSaveBody(String name, String body) {
+        CMSPage page = CMSPage.findById(name);
+        notFoundIfNull(page);
+        page.body = body;
+        page.save();
+        renderJSON("OK");
+    }
+
+    /**
      * Delete a page.
      *
      * @param id
