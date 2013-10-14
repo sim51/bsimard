@@ -7,7 +7,7 @@
     <h1>&{'cms.new.title', template}</h1>
 #{/else}
 
-#{form @cms.Admin.savePage(), class:"form-horizontal"}
+#{form @cms.Admin.savePage(), class:"form-horizontal", id:"form"}
 
     #{ifErrors}
         <div class="alert alert-error">
@@ -30,7 +30,7 @@
                 <a class="form-tooltip" href="#" data-toggle="tooltip" data-placement="right" title="&{'cms.page.name.help'}"><i class="icon-info-sign"></i></a>
             </label>
             <div class="controls">
-                <input class="span12" type="text" id="name" name="page.name" placeholder="&{'cms.page.name.placeholder'}" value="${page?.name}" disabled="disabled"/>
+                <input class="span12" type="text" id="name" name="page.name" placeholder="&{'cms.page.name.placeholder'}" value="${page?.name}" readonly="readpnly"/>
                 #{if errors?.forKey('page.name')}
                     <span class="help-inline">#{error 'page.name' /}</span>
                 #{/if}
@@ -86,8 +86,8 @@
             &{'cms.page.body'}
             <a class="form-tooltip" href="#" data-toggle="tooltip" data-placement="right" title="&{'cms.page.body.help'}"><i class="icon-info-sign"></i></a>
         </label>
-        <div class="controls">
-            <textarea id="body" name="page.body" placeholder="&{'cms.page.body.placeholder'}" class="span12 tynimce" rows="30">${page?.body}</textarea>
+        <div class="controls span12">
+            <textarea id="body" name="page.body" placeholder="&{'cms.page.body.placeholder'}" class="ckeditor" rows="30">${page?.body}</textarea>
             #{if errors?.forKey('page.body')}
                 <span class="help-inline">#{error 'page.body' /}</span>
             #{/if}
@@ -105,31 +105,18 @@
     </div>
 #{/form}
 
-<script type="text/javascript" src="/public/tiny_mce/tiny_mce.js" ></script >
+<script type="text/javascript" src="/public/ckeditor/ckeditor.js" ></script >
 <script type="text/javascript" >
-    tinyMCE.init({
-        mode : "textareas",
-        elements : 'nourlconvert',
-        theme : "advanced",
-        plugins : "advimage, advlink",
-        editor_selector : "tynimce",
-        verify_html : false,
-        clean:false,
-
-        // including css
-        content_css: "@{'public/stylesheets/main.less'}",
-
-        // Theme options - button# indicated the row# only
-        theme_advanced_buttons1 : "newdocument,|,bold,italic,underline,|,justifyleft,justifycenter,justifyright,fontselect,fontsizeselect,formatselect",
-        theme_advanced_buttons2 : "cut,copy,paste,|,bullist,numlist,|,outdent,indent,|,undo,redo,|,link,unlink,anchor,image,|,code,preview,|,forecolor,backcolor",
-        theme_advanced_toolbar_location : "top",
-        theme_advanced_toolbar_align : "left",
-        theme_advanced_statusbar_location : "bottom",
-        theme_advanced_resizing : true,
-        external_image_list_url : "imagelist.js",
-        convert_urls : false
-    });
     $(document).ready(function () {
         $('.form-tooltip').tooltip();
+    });
+    CKEDITOR.on( 'instanceReady', function( ev ) {
+        ev.editor.dataProcessor.dataFilter.addRules( {
+            elements: {
+                img: function( el ) {
+                    el.attributes.itemscope = 'image';
+                }
+            }
+        } )
     });
 </script >

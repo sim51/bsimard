@@ -2,4 +2,39 @@
     <div id="cmsbar">
         <a class="btn btn-warning" href="@{cms.Admin.editPage(_pageName)}">&{'cms.page.edit'}</a>
     </div>
+    <script type="text/javascript" src="/public/ckeditor/ckeditor.js" ></script >
+    <script type="text/javascript">
+        CKEDITOR.inline( '${_pageName}' );
+        CKEDITOR.on( 'instanceReady', function( ev ) {
+            ev.editor.dataProcessor.dataFilter.addRules( {
+                elements: {
+                    img: function( el ) {
+                        el.attributes.itemscope = 'image';
+                    }
+                }
+            } )
+        });
+        CKEDITOR.plugins.registered['save'] =
+        {
+            init : function( editor )
+            {
+                editor.addCommand( 'save',
+                        {
+                            modes : { wysiwyg:1, source:1 },
+                            exec : function( editor ) {
+                                if(editor.checkDirty()) {
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "@{cms.Admin.ajaxSaveBody(_pageName)}",
+                                        data: CKEDITOR.instances['${_pageName}'].getData(),
+                                        error: alert("Error when saving data")
+                                    });
+                                }
+                            }
+                        }
+                );
+                editor.ui.addButton( 'Save', {label : '@GeneralTerms.Save', command : 'save'} );
+            }
+        }
+    </script>
 #{/if}

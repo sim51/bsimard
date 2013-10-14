@@ -1,0 +1,10 @@
+#{if error}
+    <textarea>
+        { "Error": "${error}", "Code": -1 }
+    </textarea>
+#{/if}
+#{else}
+    <textarea>
+        { "Path": "${path}", "Name": "${filename}", "Error": "No error", "Code": 0 }
+    </textarea>
+#{/else}

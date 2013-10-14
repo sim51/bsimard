@@ -1,0 +1,6 @@
+#{if error}
+{ "Error": "${error}", "Code": -1}
+#{/if}
+#{else}
+{ "Error": "No error", "Code": 0, "Old Path": "${oldPath}", "Old Name": "${oldName}", "New Path": "${newPath}", "New Name": "${oldName}" }
+#{/else}

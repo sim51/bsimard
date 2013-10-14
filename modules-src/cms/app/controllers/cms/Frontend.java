@@ -1,6 +1,8 @@
 package controllers.cms;
 
-import models.cms.CMSImage;
+import controllers.Secure;
+import controllers.Security;
+import models.cms.CMSFile;
 import models.cms.CMSPage;
 import play.Play;
 import play.mvc.Controller;
@@ -20,7 +22,18 @@ public class Frontend extends Controller {
 	public static void show(String pageName) {
 		CMSPage page = CMSPage.findById(pageName);
 		notFoundIfNull(page);
-		renderTemplate("/cms/" + page.template + ".html", page);
+        if(page.published) {
+		    renderTemplate("/cms/" + page.template + ".html", page);
+        }
+        else {
+            boolean hasProfile = Security.check("admin");
+            if(hasProfile){
+                renderTemplate("/cms/" + page.template + ".html", page);
+            }
+            else {
+                forbidden();
+            }
+        }
 	}
 
     /**
@@ -36,13 +49,24 @@ public class Frontend extends Controller {
     }
 
     /**
-     * Render an CMSImage.
+     * Render an CMSFile.
      *
      * @param name
      */
 	public static void image(String name) {
-		CMSImage image = CMSImage.findById(name);
+		CMSFile image = CMSFile.findById(name);
+        response.contentType = image.data.type();
 		renderBinary(image.data.get());
 	}
+
+    /**
+     * Render an CMSFile.
+     */
+    public static void image() {
+        String name = params.get("name");
+        CMSFile image = CMSFile.findById(name);
+        response.contentType = image.data.type();
+        renderBinary(image.data.get());
+    }
 
 }
