@@ -14,7 +14,7 @@ public class Security extends Secure.Security {
      * @param profile
      * @return
      */
-    static boolean check(String profile) {
+    public static boolean check(String profile) {
         return AbstractController.hasAdminRight();
     }
 
@@ -23,7 +23,7 @@ public class Security extends Secure.Security {
      *
      * @return
      */
-    static String connected() {
+    public static String connected() {
         SocialUser user = SecureSocial.getCurrentUser();
         return user.id.id;
     }
@@ -33,7 +33,7 @@ public class Security extends Secure.Security {
      *
      * @return
      */
-    static boolean isConnected() {
+    public static boolean isConnected() {
         SocialUser user = SecureSocial.getCurrentUser();
         if(user != null) {
             return true;

@@ -102,7 +102,7 @@ public class Admin extends Controller {
         CMSPage page = CMSPage.findById(id);
         notFoundIfNull(page);
         page.published = Boolean.TRUE;
-        page.save();
+        page._save();
         index(page.template);
     }
 
@@ -115,7 +115,7 @@ public class Admin extends Controller {
         CMSPage page = CMSPage.findById(id);
         notFoundIfNull(page);
         page.published = Boolean.FALSE;
-        page.save();
+        page._save();
         index(page.template);
     }
 
@@ -241,13 +241,7 @@ public class Admin extends Controller {
         if (method.equals("delete")) {
             String path = params.get("path");
 
-            CMSFile file = CMSFile.findById(path);
-
-            // TODO : delete all files under this folder
-            if (file.data != null && file.data.exists()) {
-                file.data.getFile().delete();
-            }
-            file.delete();
+            CMSFile.deleteFolder(path);
             response.contentType = "application/json";
             render("cms/Admin/filemanager/delete.html", path);
         }

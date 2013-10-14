@@ -1,5 +1,7 @@
 package controllers.cms;
 
+import controllers.Secure;
+import controllers.Security;
 import models.cms.CMSFile;
 import models.cms.CMSPage;
 import play.Play;
@@ -20,7 +22,18 @@ public class Frontend extends Controller {
 	public static void show(String pageName) {
 		CMSPage page = CMSPage.findById(pageName);
 		notFoundIfNull(page);
-		renderTemplate("/cms/" + page.template + ".html", page);
+        if(page.published) {
+		    renderTemplate("/cms/" + page.template + ".html", page);
+        }
+        else {
+            boolean hasProfile = Security.check("admin");
+            if(hasProfile){
+                renderTemplate("/cms/" + page.template + ".html", page);
+            }
+            else {
+                forbidden();
+            }
+        }
 	}
 
     /**

@@ -39,12 +39,28 @@ public class CMSFile extends GenericModel {
     public Date updated = new Date();
 
     /**
-     * Return the list of all item inside on the folder.
+     * Return the list of all item inside the folder.
+     *
      * @param path
      * @return
      */
     public static List<CMSFile> getFolderChildren(String path){
         return CMSFile.find("name NOT LIKE '" + path + "%/%' and name like '" + path + "%'").fetch();
+    }
+
+    /**
+     * Delete a folder, and all under files & folders.
+     *
+     * @param path
+     */
+    public static void deleteFolder(String path){
+        List<CMSFile> files = CMSFile.find("name like '" + path + "%'").fetch();
+        for (CMSFile file: files){
+            if (file.data != null && file.data.exists()) {
+                file.data.getFile().delete();
+            }
+            file.delete();
+        }
     }
 
 }

@@ -7,7 +7,7 @@
     <h1>&{'cms.new.title', template}</h1>
 #{/else}
 
-#{form @cms.Admin.savePage(), class:"form-horizontal"}
+#{form @cms.Admin.savePage(), class:"form-horizontal", id:"form"}
 
     #{ifErrors}
         <div class="alert alert-error">
@@ -30,7 +30,7 @@
                 <a class="form-tooltip" href="#" data-toggle="tooltip" data-placement="right" title="&{'cms.page.name.help'}"><i class="icon-info-sign"></i></a>
             </label>
             <div class="controls">
-                <input class="span12" type="text" id="name" name="page.name" placeholder="&{'cms.page.name.placeholder'}" value="${page?.name}" disabled="disabled"/>
+                <input class="span12" type="text" id="name" name="page.name" placeholder="&{'cms.page.name.placeholder'}" value="${page?.name}" readonly="readpnly"/>
                 #{if errors?.forKey('page.name')}
                     <span class="help-inline">#{error 'page.name' /}</span>
                 #{/if}
@@ -109,5 +109,14 @@
 <script type="text/javascript" >
     $(document).ready(function () {
         $('.form-tooltip').tooltip();
+    });
+    CKEDITOR.on( 'instanceReady', function( ev ) {
+        ev.editor.dataProcessor.dataFilter.addRules( {
+            elements: {
+                img: function( el ) {
+                    el.attributes.itemscope = 'image';
+                }
+            }
+        } )
     });
 </script >
