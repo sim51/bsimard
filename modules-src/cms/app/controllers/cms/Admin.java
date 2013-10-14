@@ -91,7 +91,7 @@ public class Admin extends Controller {
         notFoundIfNull(page);
         page.body = body;
         page.save();
-        renderJSON("OK");
+        ok();
     }
 
     /**
