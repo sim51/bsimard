@@ -27,7 +27,13 @@
                                         type: "POST",
                                         url: "@{cms.Admin.ajaxSaveBody(_pageName)}",
                                         data: CKEDITOR.instances['${_pageName}'].getData(),
-                                        error: alert("Error when saving data")
+                                        success: function (response) {
+
+                                        },
+                                        error: function (xhr, ajaxOptions, thrownError) {
+                                            alert(xhr.status);
+                                            alert(thrownError);
+                                        }
                                     });
                                 }
                             }
