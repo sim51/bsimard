@@ -78,6 +78,6 @@ public class Application extends AbstractController {
      */
     public static void robots(){
         response.contentType = "text/plain; charset=" + Http.Response.current().encoding;
-        render();
+        render("Application/robots.html");
     }
 }
