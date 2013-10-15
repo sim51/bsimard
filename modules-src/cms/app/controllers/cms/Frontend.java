@@ -22,6 +22,9 @@ public class Frontend extends Controller {
 	public static void show(String pageName) {
 		CMSPage page = CMSPage.findById(pageName);
 		notFoundIfNull(page);
+        if(page.template.equals("Fragment")){
+            notFound();
+        }
         if(page.published) {
 		    renderTemplate("/cms/" + page.template + ".html", page);
         }
