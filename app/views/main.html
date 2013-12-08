@@ -11,7 +11,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="google-site-verification" content="Aer6BmLRp_kjily3ltrCqys_5KBaRaS_iVIe73dlgVw" />
 
-        <link type="text/css" rel="stylesheet" href="@{'public/stylesheets/main.less'}" />
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/bsimard.png'}">
         <link rel="alternate" type="application/rss+xml" title="Flux RSS" href="@{cms.Frontend.rss("blog")}" />
         #{get 'moreHeader' /}
@@ -113,6 +112,9 @@
 
         #{cms.display 'trakers' } #{/cms.display}
 
+        <noscript>
+            <link type="text/css" rel="stylesheet" href="@{'public/stylesheets/main.less'}" />
+        </noscript>
         <script src="@{'/public/javascripts/jquery.min.js'}" type="text/javascript"></script>
         <script src="@{'/public/javascripts/bootstrap.min.js'}" type="text/javascript"></script>
         #{get 'moreScripts' /}
